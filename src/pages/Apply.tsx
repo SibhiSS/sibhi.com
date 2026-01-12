@@ -205,7 +205,7 @@ const Apply = () => {
                                                     value={formData.fullName}
                                                     onChange={handleInputChange}
                                                     className="w-full bg-background/50 border border-white/10 rounded-lg px-4 py-3 focus:border-primary/50 focus:ring-1 focus:ring-primary/50 outline-none transition-all"
-                                                    placeholder="Santhosh V"
+                                                    placeholder="Donald Putin"
                                                 />
                                             </div>
                                             <div className="space-y-2">
