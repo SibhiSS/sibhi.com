@@ -19,6 +19,19 @@ const HeroSection = () => {
       {/* Light gradient overlay for text readability while keeping grid visible */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background/80 pointer-events-none -z-10" />
 
+      {/* Translucent Logo Background */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.15] pointer-events-none">
+        <img
+          src="/logo.png"
+          alt="NOVA CPS Logo"
+          className="w-full h-full object-contain mix-blend-screen"
+          style={{
+            maskImage: 'radial-gradient(circleAt center, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)'
+          }}
+        />
+      </div>
+
       <div className="relative z-10 container mx-auto px-6 text-center">
         {/* Badge */}
         <motion.div
