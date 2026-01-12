@@ -6,32 +6,39 @@ import RevealText from '@/components/ui/RevealText';
 
 const events = [
   {
-    title: 'CPS Hackathon 2025',
-    date: 'Coming Soon',
+    title: 'Inaugural CPS Talk',
+    date: 'One-Time',
     location: 'Main Campus',
-    type: 'Hackathon',
-    description: '48-hour intensive hackathon focused on building innovative CPS solutions.',
+    type: 'Inauguration',
+    description: 'Expert session on real-world CPS architecture and applications.',
   },
   {
-    title: 'IoT Workshop Series',
-    date: 'Monthly',
+    title: 'Embedded Systems Bootcamp',
+    date: 'Multi-Session',
     location: 'Tech Lab',
     type: 'Workshop',
-    description: 'Hands-on sessions covering IoT fundamentals to advanced implementations.',
+    description: 'Hands-on bootcamp on microcontrollers and real-time firmware.',
   },
   {
-    title: 'AI in Robotics Seminar',
-    date: 'TBA',
-    location: 'Virtual + In-Person',
-    type: 'Seminar',
-    description: 'Industry experts sharing insights on AI-powered robotics systems.',
+    title: 'Sensing & Control Workshop',
+    date: 'Monthly',
+    location: 'Hardware Lab',
+    type: 'Workshop',
+    description: 'Practical exploration of sensors, actuators, and control logic.',
   },
   {
-    title: 'Cybersecurity CTF',
-    date: 'Quarterly',
-    location: 'Online',
-    type: 'Competition',
-    description: 'Capture the flag competitions testing CPS security skills.',
+    title: 'Robotics Buildathon',
+    date: 'Weekend',
+    location: 'Robotics Lab',
+    type: 'Buildathon',
+    description: 'Team-based buildathon for integrated robotic automation systems.',
+  },
+  {
+    title: 'CPS Cybersecurity Workshop',
+    date: 'One-Time',
+    location: 'Hybrid',
+    type: 'Workshop',
+    description: 'Introduction to firmware vulnerabilities and system threats.',
   },
 ];
 
@@ -50,7 +57,7 @@ const EventsSection = () => {
             Events
           </span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
-            <RevealText text="Events & Workshops" />
+            <RevealText text="Events & Technical Initiatives" />
           </h2>
         </motion.div>
 

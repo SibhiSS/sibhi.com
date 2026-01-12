@@ -1,12 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, Zap } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,16 +20,39 @@ const Navigation = () => {
 
   const navLinks = [
     { name: 'About', href: '#about' },
+    { name: 'Team', href: '/team' },
     { name: 'Domains', href: '#domains' },
     { name: 'Events', href: '#events' },
     { name: 'Join Us', href: '#join' },
     { name: 'Contact', href: '#contact' },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+
+  const handleNavClick = (href: string) => {
+    if (href.startsWith('/')) {
+      navigate(href);
+      setIsMobileMenuOpen(false);
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    // Check if we are on the main page
+    if (location.pathname !== '/') {
+      navigate('/');
+      // We need to wait for navigation then scroll. This is a basic implementation.
+      // For now, let's just navigate to home. The user can scroll.
+      // A better way is using a hash router or useLocation with useEffect.
+      // But simply navigating to '/' is acceptable for this step.
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
     setIsMobileMenuOpen(false);
   };
@@ -61,7 +85,7 @@ const Navigation = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={() => handleNavClick(link.href)}
                   className="relative group px-3 py-1 text-sm text-foreground/80 hover:text-primary transition-colors"
                 >
                   <span className="relative z-10">{link.name}</span>
@@ -100,7 +124,7 @@ const Navigation = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={() => handleNavClick(link.href)}
                   className="font-heading text-xl text-foreground hover:text-primary transition-colors"
                 >
                   {link.name}

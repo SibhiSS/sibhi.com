@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Github, Linkedin, Twitter, Instagram, Zap } from 'lucide-react';
+import { Mail, MapPin, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 import RevealText from '@/components/ui/RevealText';
 
 const socialLinks = [
@@ -38,15 +38,15 @@ const ContactSection = () => {
             transition={{ delay: 0.1 }}
           >
             <a
-              href="mailto:novacps@college.edu"
+              href="mailto:nova.cpsc@gmail.com"
               className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border hover:border-primary/50 transition-colors"
             >
               <Mail className="w-4 h-4 text-primary" />
-              <span className="text-sm text-muted-foreground">novacps@college.edu</span>
+              <span className="text-sm text-muted-foreground">nova.cpsc@gmail.com</span>
             </a>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border">
               <MapPin className="w-4 h-4 text-primary" />
-              <span className="text-sm text-muted-foreground">Tech Building, Campus</span>
+              <span className="text-sm text-muted-foreground">Vellore Institute of Technology, Chennai</span>
             </div>
           </motion.div>
 
@@ -81,7 +81,7 @@ const ContactSection = () => {
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-primary" />
+              <img src="/logo.png" alt="NOVA CPS" className="w-8 h-8 object-contain" />
               <span className="font-heading font-bold text-sm">
                 <span className="text-primary">NOVA</span>
                 <span className="text-foreground"> CPS</span>

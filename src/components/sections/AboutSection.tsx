@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { Eye, Target, GraduationCap, Terminal, Fingerprint } from 'lucide-react';
+import { Eye, Target } from 'lucide-react';
 import HolographicCard from '@/components/ui/HolographicCard';
 import RevealText from '@/components/ui/RevealText';
 
@@ -74,73 +74,7 @@ const AboutSection = () => {
           </HolographicCard>
         </div>
       </div>
-
-      {/* Leadership Team */}
-      <motion.div
-        className="mt-24"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-      >
-        <h3 className="text-center font-heading text-2xl md:text-3xl font-bold text-foreground mb-12">
-          <RevealText text="Leadership & Faculty" />
-        </h3>
-
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {/* Faculty Coordinator */}
-          <HolographicCard className="p-6 flex flex-col items-center text-center h-full hover:border-primary/40">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary">
-              <GraduationCap className="w-8 h-8" />
-            </div>
-            <h4 className="font-heading text-xl font-bold text-foreground mb-1">
-              Pradeep Kumar T S
-            </h4>
-            <span className="text-sm text-primary font-medium tracking-wide uppercas mb-4">
-              Faculty Coordinator
-            </span>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Guiding the academic and technical direction of NOVA CPS with expert mentorship.
-            </p>
-          </HolographicCard>
-
-          {/* Chairperson */}
-          <HolographicCard className="p-6 flex flex-col items-center text-center h-full border-primary/30 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)]">
-            <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-4 text-primary relative">
-              <Terminal className="w-8 h-8" />
-              <div className="absolute inset-0 rounded-full border border-primary/50 animate-ping opacity-20" />
-            </div>
-            <h4 className="font-heading text-xl font-bold text-foreground mb-1">
-              Sibhi S
-            </h4>
-            <span className="text-sm text-primary font-medium tracking-wide uppercase mb-4">
-              Chairperson
-            </span>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-              Computer Science Engineering background focused on Cyber-Physical Systems, Embedded Systems, and System-level Engineering.
-            </p>
-            <p className="text-xs text-muted-foreground/80 italic">
-              "Emphasizing technical rigor, structured execution, and collaborative growth."
-            </p>
-          </HolographicCard>
-
-          {/* Co-founder */}
-          <HolographicCard className="p-6 flex flex-col items-center text-center h-full hover:border-primary/40">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary">
-              <Fingerprint className="w-8 h-8" />
-            </div>
-            <h4 className="font-heading text-xl font-bold text-foreground mb-1">
-              Santhosh V
-            </h4>
-            <span className="text-sm text-primary font-medium tracking-wide uppercase mb-4">
-              Co-Founder
-            </span>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Instrumental in establishing the core foundations and strategic vision of the committee.
-            </p>
-          </HolographicCard>
-        </div>
-      </motion.div>
-    </section >
+    </section>
   );
 };
 

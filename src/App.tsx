@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/sonner';
 import Index from '@/pages/Index';
 import Register from '@/pages/Register';
 import Apply from '@/pages/Apply';
+import Team from '@/pages/Team';
 import NotFound from '@/pages/NotFound';
 import './App.css';
 
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/apply" element={<Apply />} />
+          <Route path="/team" element={<Team />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
