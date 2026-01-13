@@ -6,7 +6,7 @@ import './index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ''}>
+    <GoogleOAuthProvider clientId="284629439290-71th9plfs4pgh638plb3kgf8l73gr3kg.apps.googleusercontent.com">
       <App />
     </GoogleOAuthProvider>
   </StrictMode>,
