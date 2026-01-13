@@ -4,65 +4,9 @@ import { Zap, Loader2, CheckCircle, AlertCircle, LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { z } from 'zod';
 import emailjs from '@emailjs/browser';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { saveRegistrationToGoogleSheets } from '@/services/registrationService';
-
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  if (!validateForm()) {
-    return;
-  }
-
-  setIsSubmitting(true);
-
-  try {
-    // 1. Save to Google Sheets
-    await saveRegistrationToGoogleSheets({
-      ...formData,
-      email: user?.email || '',
-    });
-
-    // 2. Send confirmation email via EmailJS (existing code)
-    const templateParams = {
-      to_name: formData.fullName,
-      to_email: user?.email,
-      registration_number: formData.registrationNumber,
-      department: formData.department,
-      year_of_study: formData.yearOfStudy,
-      areas_of_interest: formData.areasOfInterest.join(', '),
-    };
-
-    await emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      templateParams,
-      EMAILJS_PUBLIC_KEY
-    );
-
-    toast({
-      title: "Registration successful!",
-      description: "Your registration has been saved and confirmation email sent.",
-    });
-
-    setIsSubmitted(true);
-  } catch (error) {
-    console.error('Submission error:', error);
-    toast({
-      title: "Error",
-      description: "Failed to complete registration. Please try again.",
-      variant: "destructive",
-    });
-  } finally {
-    setIsSubmitting(false);
-  }
-};
-
-// EmailJS Configuration
-const EMAILJS_SERVICE_ID = 'service_ln9nhmn';
-const EMAILJS_TEMPLATE_ID = 'template_5p399mj';
-const EMAILJS_PUBLIC_KEY = 'bj3DbINQas11jOWqr';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -75,6 +19,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+// EmailJS Configuration
+const EMAILJS_SERVICE_ID = 'service_ln9nhmn';
+const EMAILJS_TEMPLATE_ID = 'template_5p399mj';
+const EMAILJS_PUBLIC_KEY = 'bj3DbINQas11jOWqr';
 
 const AREAS_OF_INTEREST = [
   'IoT',
@@ -175,7 +123,7 @@ const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }

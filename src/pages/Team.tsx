@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { GraduationCap, Terminal, Fingerprint, ArrowLeft } from 'lucide-react';
+import { GraduationCap, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HolographicCard from '@/components/ui/HolographicCard';
 import RevealText from '@/components/ui/RevealText';
@@ -27,29 +27,11 @@ const Team = () => {
                 </div>
 
                 <motion.div
-                    className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center"
+                    className="flex justify-center gap-8 max-w-3xl mx-auto items-center"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                    {/* Sibhi S - Chairperson (Left) */}
-                    <HolographicCard className="p-8 flex flex-col items-center text-center h-full hover:border-primary/40 group">
-                        <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
-                            <Terminal className="w-10 h-10" />
-                        </div>
-                        <h4 className="font-heading text-2xl font-bold text-foreground mb-2">
-                            Sibhi S
-                        </h4>
-                        <span className="text-sm text-primary font-bold tracking-widest uppercase mb-6 bg-primary/10 px-3 py-1 rounded-full">
-                            Chairperson
-                        </span>
-                        <p className="text-muted-foreground leading-relaxed mb-4">
-                            Computer Science Engineering background focused on Cyber-Physical Systems and Embedded Systems.
-                        </p>
-                        <p className="text-xs text-muted-foreground/80 italic mt-auto">
-                            "Emphasizing technical rigor and structured execution."
-                        </p>
-                    </HolographicCard>
 
                     {/* Pradeep Kumar T S - Faculty Coordinator (Center & Highlighted) */}
                     <HolographicCard className="p-10 md:py-16 md:px-12 flex flex-col items-center text-center h-full border-primary/50 shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:border-primary hover:shadow-[0_0_60px_rgba(59,130,246,0.5)] scale-100 md:scale-105 z-10 relative overflow-hidden group ring-1 ring-primary/20 bg-background/50 backdrop-blur-sm">
@@ -70,23 +52,6 @@ const Team = () => {
                             Guiding the academic and technical direction of NOVA CPS with expert mentorship and industry insights.
                         </p>
                     </HolographicCard>
-
-                    {/* Santhosh V - Co-founder (Right) */}
-                    <HolographicCard className="p-8 flex flex-col items-center text-center h-full hover:border-primary/40 group">
-                        <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
-                            <Fingerprint className="w-10 h-10" />
-                        </div>
-                        <h4 className="font-heading text-2xl font-bold text-foreground mb-2">
-                            Santhosh V
-                        </h4>
-                        <span className="text-sm text-primary font-bold tracking-widest uppercase mb-6 bg-primary/10 px-3 py-1 rounded-full">
-                            Co-Founder
-                        </span>
-                        <p className="text-muted-foreground leading-relaxed">
-                            Instrumental in establishing the core foundations and strategic vision of the committee.
-                        </p>
-                    </HolographicCard>
-
                 </motion.div>
             </div>
         </div>
