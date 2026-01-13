@@ -14,7 +14,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { db } from '@/lib/firebase';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 interface Application {
@@ -96,6 +96,67 @@ const Admin = () => {
         }
     };
 
+    const generateSampleData = async () => {
+        setIsLoading(true);
+        const samples = [
+            {
+                fullName: "Alice Johnson",
+                email: "alice.johnson2024@vitstudent.ac.in",
+                rollNumber: "21BCE1234",
+                department: "CSE (Core)",
+                year: "3",
+                phone: "9876543210",
+                primaryDept: "Technical",
+                domains: ["IoT & Embedded Systems", "Robotics & Automation"],
+                createdAt: serverTimestamp(),
+                status: 'pending'
+            },
+            {
+                fullName: "Bob Smith",
+                email: "bob.smith2024@vitstudent.ac.in",
+                rollNumber: "22BIT5678",
+                department: "IT",
+                year: "2",
+                phone: "8765432109",
+                primaryDept: "Design & Content",
+                domains: ["Graphic Design", "UI/UX Design"],
+                createdAt: serverTimestamp(),
+                status: 'pending'
+            },
+            {
+                fullName: "Charlie Brown",
+                email: "charlie.brown2024@vitstudent.ac.in",
+                rollNumber: "23BME9012",
+                department: "Mechanical",
+                year: "1",
+                phone: "7654321098",
+                primaryDept: "Management",
+                domains: ["Event Management", "Logistics"],
+                createdAt: serverTimestamp(),
+                status: 'pending'
+            }
+        ];
+
+        try {
+            const promises = samples.map(data => addDoc(collection(db, 'applications'), data));
+            await Promise.all(promises);
+            // Refresh
+            const q = query(collection(db, 'applications'), orderBy('createdAt', 'desc'));
+            const querySnapshot = await getDocs(q);
+            const apps: Application[] = [];
+            querySnapshot.forEach((doc) => {
+                apps.push({ id: doc.id, ...doc.data() } as Application);
+            });
+            setApplications(apps);
+            alert("Sample data added!");
+        } catch (error) {
+            console.error("Error adding sample data: ", error);
+            alert("Failed to add sample data. Check console for details.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     if (authLoading) return <div className="min-h-screen bg-black flex items-center justify-center"><Loader2 className="animate-spin text-primary" /></div>;
 
     if (!user || user.email !== 'sibhi.s2024@vitstudent.ac.in') {
@@ -141,6 +202,9 @@ const Admin = () => {
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
+                        <Button onClick={generateSampleData} variant="outline" className="border-white/10 hover:bg-white/5">
+                            Generate Sample Data
+                        </Button>
                         <Button onClick={downloadCSV} className="bg-primary hover:bg-primary/90">
                             <Download className="w-4 h-4 mr-2" />
                             Export CSV
