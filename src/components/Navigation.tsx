@@ -1,13 +1,25 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogIn, LogOut, User as UserIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, signInWithGoogle, logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,8 +38,6 @@ const Navigation = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
-  const navigate = useNavigate();
-
   const handleNavClick = (href: string) => {
     if (href.startsWith('/')) {
       navigate(href);
@@ -36,13 +46,8 @@ const Navigation = () => {
       return;
     }
 
-    // Check if we are on the main page
     if (location.pathname !== '/') {
       navigate('/');
-      // We need to wait for navigation then scroll. This is a basic implementation.
-      // For now, let's just navigate to home. The user can scroll.
-      // A better way is using a hash router or useLocation with useEffect.
-      // But simply navigating to '/' is acceptable for this step.
       setTimeout(() => {
         const element = document.querySelector(href);
         if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -70,7 +75,6 @@ const Navigation = () => {
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            {/* Logo */}
             <a href="#" className="flex items-center gap-2">
               <img src="/logo.png" alt="Nova CPS Logo" className="w-8 h-8 object-contain" />
               <span className="font-heading font-bold text-lg">
@@ -92,11 +96,56 @@ const Navigation = () => {
                   <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </button>
               ))}
+
               <Link to="/apply">
                 <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
                   Join Us
                 </Button>
               </Link>
+
+              {user ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={user.photoURL} alt={user.displayName} />
+                        <AvatarFallback>{user.displayName?.charAt(0)}</AvatarFallback>
+                      </Avatar>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56" align="end" forceMount>
+                    <DropdownMenuLabel className="font-normal">
+                      <div className="flex flex-col space-y-1">
+                        <p className="text-sm font-medium leading-none">{user.displayName}</p>
+                        <p className="text-xs leading-none text-muted-foreground">
+                          {user.email}
+                        </p>
+                      </div>
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => {
+                      if (user.email === 'sibhi.s2024@vitstudent.ac.in') navigate('/admin');
+                    }}>
+                      <UserIcon className="mr-2 h-4 w-4" />
+                      <span>{user.email === 'sibhi.s2024@vitstudent.ac.in' ? 'Admin Dashboard' : 'Profile'}</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={logout}>
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="border-primary/20 hover:bg-primary/10"
+                  onClick={signInWithGoogle}
+                >
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Sign In
+                </Button>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -134,6 +183,28 @@ const Navigation = () => {
                   Join Us
                 </Button>
               </Link>
+
+              {user ? (
+                <div className="flex flex-col items-center gap-4">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user.photoURL} />
+                      <AvatarFallback>{user.displayName?.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <span>{user.displayName}</span>
+                  </div>
+                  <Button variant="outline" onClick={() => { logout(); setIsMobileMenuOpen(false); }}>
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Log Out
+                  </Button>
+                </div>
+              ) : (
+                <Button variant="outline" onClick={() => { signInWithGoogle(); setIsMobileMenuOpen(false); }}>
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Sign In
+                </Button>
+              )}
+
             </div>
           </motion.div>
         )}
