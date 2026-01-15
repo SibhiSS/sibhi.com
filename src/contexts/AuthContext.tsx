@@ -1,5 +1,7 @@
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { useGoogleLogin, googleLogout, TokenResponse } from '@react-oauth/google';
+import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
 import axios from 'axios';
 
 interface User {
@@ -55,7 +57,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setLoading(true);
         setError(null);
 
-        // Get user info from Google
+        // 1. Authenticate with Firebase (Required for Database Access)
+        const credential = GoogleAuthProvider.credential(null, tokenResponse.access_token);
+        await signInWithCredential(auth, credential);
+
+        // 2. Get user info from Google (for display profile)
         const userInfoResponse = await axios.get(
           'https://www.googleapis.com/oauth2/v3/userinfo',
           {
@@ -66,11 +72,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const { email, name, picture, sub } = userInfoResponse.data;
 
         // Validate VIT email
-        if (!email.endsWith('@vitstudent.ac.in')) {
-          setError('Only @vitstudent.ac.in emails are allowed');
-          setLoading(false);
-          return;
-        }
+        // if (!email.endsWith('@vitstudent.ac.in')) {
+        //   setError('Only @vitstudent.ac.in emails are allowed');
+        //   setLoading(false);
+        //   return;
+        // }
 
         // Create user object
         const userData: User = {
@@ -85,7 +91,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setLoading(false);
       } catch (err: any) {
         console.error('Login error:', err);
-        setError(err?.response?.data?.error || 'Failed to sign in. Please try again.');
+        setError(err?.message || 'Failed to sign in. Please try again.');
         setLoading(false);
       }
     },
