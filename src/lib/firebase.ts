@@ -6,12 +6,13 @@ import { getFirestore } from 'firebase/firestore';
 // Note: These are publishable keys - safe to include in frontend code
 // You'll need to replace these with your actual Firebase project config
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "YOUR_API_KEY",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "YOUR_PROJECT.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "YOUR_PROJECT_ID",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "YOUR_PROJECT.appspot.com",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "YOUR_SENDER_ID",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "YOUR_APP_ID"
+  apiKey: "AIzaSyBF2xC_DKzf94LnPFN6RR4wY9oE3fKOmAU",
+  authDomain: "nova-cpsc.firebaseapp.com",
+  projectId: "nova-cpsc",
+  storageBucket: "nova-cpsc.firebasestorage.app",
+  messagingSenderId: "284629439290",
+  appId: "1:284629439290:web:1ca776f716b8799be9b603",
+  measurementId: "G-PXWJTPCVH9"
 };
 
 // Initialize Firebase
