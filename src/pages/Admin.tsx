@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { ShieldAlert, Download, Search, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ShieldAlert, Download, Search, Loader2, Eye, Star, CheckCircle, XCircle, MinusCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import HolographicCard from '@/components/ui/HolographicCard';
 import { Button } from '@/components/ui/button';
@@ -13,8 +13,15 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { db } from '@/lib/firebase';
-import { collection, getDocs, query, orderBy, addDoc, serverTimestamp } from 'firebase/firestore';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
+import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router-dom';
 
 interface Application {
@@ -22,13 +29,25 @@ interface Application {
     fullName: string;
     email: string;
     rollNumber: string;
-    department: string;
-    year: string;
     phone: string;
+    year: string;
+    department: string; // Academic dept
+
+    // Primary Choice
     primaryDept: string;
     domains: string[];
-    submittedAt?: any;
-    // ... add other fields as needed
+    skills: string;
+    reason: string;
+
+    // Secondary Choice
+    secondaryDept: string;
+    secondaryDomains: string[];
+    secondarySkills: string;
+    secondaryReason: string;
+
+    submittedAt: any;
+    status: 'pending' | 'selected' | 'rejected' | 'neutral';
+    rating: number; // 0-5
 }
 
 const Admin = () => {
@@ -37,49 +56,108 @@ const Admin = () => {
     const [applications, setApplications] = useState<Application[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedApp, setSelectedApp] = useState<Application | null>(null);
+
+    const ADMIN_EMAILS = [
+        'sibhi.s2024@vitstudent.ac.in',
+        'sibhis5223@gmail.com',
+        'santhosh.v2024d@vitstudent.ac.in'
+    ];
 
     useEffect(() => {
-        if (!authLoading && (!user || user.email !== 'sibhi.s2024@vitstudent.ac.in')) {
-            // Redirect or show access denied
+        if (!authLoading && (!user || !user.email || !ADMIN_EMAILS.includes(user.email))) {
             return;
         }
 
-        const fetchApplications = async () => {
-            try {
-                const q = query(collection(db, 'applications'), orderBy('createdAt', 'desc'));
-                const querySnapshot = await getDocs(q);
-                const apps: Application[] = [];
-
-                querySnapshot.forEach((doc) => {
-                    apps.push({ id: doc.id, ...doc.data() } as Application);
-                });
-
-                setApplications(apps);
-            } catch (error) {
-                console.error("Error fetching documents: ", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        if (user?.email === 'sibhi.s2024@vitstudent.ac.in') {
+        if (user?.email && ADMIN_EMAILS.includes(user.email)) {
             fetchApplications();
         }
     }, [user, authLoading]);
 
+    const fetchApplications = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('applications')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+
+            const apps: Application[] = (data || []).map((doc: any) => ({
+                id: doc.id,
+                fullName: doc.full_name,
+                email: doc.email,
+                rollNumber: doc.roll_number,
+                phone: doc.phone,
+                year: doc.year,
+                department: doc.department,
+
+                primaryDept: doc.primary_dept,
+                domains: doc.domains || [],
+                skills: doc.skills || '',
+                reason: doc.reason || '',
+
+                secondaryDept: doc.secondary_dept || '',
+                secondaryDomains: doc.secondary_domains || [],
+                secondarySkills: doc.secondary_skills || '',
+                secondaryReason: doc.secondary_reason || '',
+
+                submittedAt: doc.created_at,
+                status: doc.status || 'pending',
+                rating: doc.rating || 0
+            }));
+
+            setApplications(apps);
+        } catch (error) {
+            console.error("Error fetching documents: ", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const updateApplication = async (id: string, updates: Partial<Application>) => {
+        try {
+            // Optimistic update
+            setApplications(prev => prev.map(app =>
+                app.id === id ? { ...app, ...updates } : app
+            ));
+            if (selectedApp && selectedApp.id === id) {
+                setSelectedApp(prev => prev ? { ...prev, ...updates } : null);
+            }
+
+            const dbUpdates: any = {};
+            if (updates.status) dbUpdates.status = updates.status;
+            if (updates.rating !== undefined) dbUpdates.rating = updates.rating;
+
+            const { error } = await supabase
+                .from('applications')
+                .update(dbUpdates)
+                .eq('id', id);
+
+            if (error) throw error;
+        } catch (error) {
+            console.error("Error updating application:", error);
+            // Revert on error (could implement full revert logic here)
+            alert("Failed to update application. Please try again.");
+            fetchApplications();
+        }
+    };
+
     const downloadCSV = () => {
-        const headers = ['Full Name', 'Email', 'Roll Number', 'Phone', 'Year', 'Department', 'Primary Choice', 'Domains'];
+        const headers = ['Full Name', 'Email', 'Roll Number', 'Phone', 'Year', 'Department', 'Primary Choice', 'Domains', 'Status', 'Rating'];
         const csvContent = [
             headers.join(','),
             ...applications.map(app => [
-                app.fullName,
+                `"${app.fullName}"`,
                 app.email,
                 app.rollNumber,
                 app.phone,
                 app.year,
-                app.department,
-                app.primaryDept,
-                `"${app.domains.join(', ')}"`
+                `"${app.department}"`,
+                `"${app.primaryDept}"`,
+                `"${app.domains.join(', ')}"`,
+                app.status,
+                app.rating
             ].join(','))
         ].join('\n');
 
@@ -100,58 +178,33 @@ const Admin = () => {
         setIsLoading(true);
         const samples = [
             {
-                fullName: "Alice Johnson",
-                email: "alice.johnson2024@vitstudent.ac.in",
-                rollNumber: "21BCE1234",
+                full_name: "Bruce Update",
+                email: "bruce.wayne2024@vitstudent.ac.in",
+                user_id: "sample_id_x",
+                roll_number: "21BCE9999",
                 department: "CSE (Core)",
                 year: "3",
-                phone: "9876543210",
-                primaryDept: "Technical",
-                domains: ["IoT & Embedded Systems", "Robotics & Automation"],
-                createdAt: serverTimestamp(),
-                status: 'pending'
-            },
-            {
-                fullName: "Bob Smith",
-                email: "bob.smith2024@vitstudent.ac.in",
-                rollNumber: "22BIT5678",
-                department: "IT",
-                year: "2",
-                phone: "8765432109",
-                primaryDept: "Design & Content",
-                domains: ["Graphic Design", "UI/UX Design"],
-                createdAt: serverTimestamp(),
-                status: 'pending'
-            },
-            {
-                fullName: "Charlie Brown",
-                email: "charlie.brown2024@vitstudent.ac.in",
-                rollNumber: "23BME9012",
-                department: "Mechanical",
-                year: "1",
-                phone: "7654321098",
-                primaryDept: "Management",
-                domains: ["Event Management", "Logistics"],
-                createdAt: serverTimestamp(),
-                status: 'pending'
+                phone: "9999999999",
+                primary_dept: "Technical",
+                domains: ["AI & Edge Computing"],
+                skills: "Python, TensorFlow, PyTorch, C++",
+                reason: "I want to build Jarvis.",
+                secondary_dept: "Management",
+                secondary_domains: ["Team Coordination"],
+                secondary_skills: "Leadership, Public Speaking",
+                secondary_reason: "I run Wayne Enterprises.",
+                status: 'pending',
+                rating: 0
             }
         ];
 
         try {
-            const promises = samples.map(data => addDoc(collection(db, 'applications'), data));
-            await Promise.all(promises);
-            // Refresh
-            const q = query(collection(db, 'applications'), orderBy('createdAt', 'desc'));
-            const querySnapshot = await getDocs(q);
-            const apps: Application[] = [];
-            querySnapshot.forEach((doc) => {
-                apps.push({ id: doc.id, ...doc.data() } as Application);
-            });
-            setApplications(apps);
+            const { error } = await supabase.from('applications').insert(samples);
+            if (error) throw error;
+            fetchApplications();
             alert("Sample data added!");
         } catch (error) {
             console.error("Error adding sample data: ", error);
-            alert("Failed to add sample data. Check console for details.");
         } finally {
             setIsLoading(false);
         }
@@ -159,7 +212,7 @@ const Admin = () => {
 
     if (authLoading) return <div className="min-h-screen bg-black flex items-center justify-center"><Loader2 className="animate-spin text-primary" /></div>;
 
-    if (!user || user.email !== 'sibhi.s2024@vitstudent.ac.in') {
+    if (!user || !user.email || !['sibhi.s2024@vitstudent.ac.in', 'sibhis5223@gmail.com', 'santhosh.v2024d@vitstudent.ac.in'].includes(user.email)) {
         return (
             <div className="min-h-screen bg-black flex items-center justify-center p-4">
                 <HolographicCard className="max-w-md w-full text-center p-8 border-red-500/50">
@@ -182,9 +235,19 @@ const Admin = () => {
         app.email.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const getStatusColor = (status: string) => {
+        switch (status) {
+            case 'selected': return 'text-green-500 bg-green-500/10 border-green-500/20';
+            case 'rejected': return 'text-red-500 bg-red-500/10 border-red-500/20';
+            case 'neutral': return 'text-yellow-500 bg-yellow-500/10 border-yellow-500/20';
+            default: return 'text-blue-500 bg-blue-500/10 border-blue-500/20';
+        }
+    };
+
     return (
         <div className="min-h-screen bg-black text-foreground p-6 md:p-12 font-sans">
             <div className="max-w-7xl mx-auto space-y-8">
+                {/* Header Actions */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
                         <h1 className="text-3xl font-bold font-heading text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500">
@@ -203,7 +266,7 @@ const Admin = () => {
                             />
                         </div>
                         <Button onClick={generateSampleData} variant="outline" className="border-white/10 hover:bg-white/5">
-                            Generate Sample Data
+                            Generate Sample
                         </Button>
                         <Button onClick={downloadCSV} className="bg-primary hover:bg-primary/90">
                             <Download className="w-4 h-4 mr-2" />
@@ -212,17 +275,18 @@ const Admin = () => {
                     </div>
                 </div>
 
+                {/* Main Table */}
                 <HolographicCard className="p-0 overflow-hidden">
                     <div className="max-h-[70vh] overflow-auto">
                         <Table>
                             <TableHeader className="bg-white/5 sticky top-0 z-10 backdrop-blur-md">
                                 <TableRow className="hover:bg-white/5 border-white/10">
-                                    <TableHead className="text-primary">Name</TableHead>
-                                    <TableHead className="text-primary">Roll No.</TableHead>
+                                    <TableHead className="text-primary w-[200px]">Name</TableHead>
                                     <TableHead className="text-primary">Dept</TableHead>
                                     <TableHead className="text-primary">Choice 1</TableHead>
-                                    <TableHead className="text-primary w-[300px]">Domains</TableHead>
-                                    <TableHead className="text-primary">Contact</TableHead>
+                                    <TableHead className="text-primary">Rating</TableHead>
+                                    <TableHead className="text-primary text-center">Status</TableHead>
+                                    <TableHead className="text-primary text-right">Actions</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -240,23 +304,42 @@ const Admin = () => {
                                     </TableRow>
                                 ) : (
                                     filteredApps.map((app) => (
-                                        <TableRow key={app.id} className="hover:bg-white/5 border-white/10 transition-colors">
-                                            <TableCell className="font-medium">{app.fullName}</TableCell>
-                                            <TableCell className="font-mono text-xs">{app.rollNumber}</TableCell>
-                                            <TableCell>{app.department} <span className="text-xs text-muted-foreground">({app.year} Yr)</span></TableCell>
+                                        <TableRow key={app.id} className="hover:bg-white/5 border-white/10 transition-colors cursor-pointer" onClick={() => setSelectedApp(app)}>
                                             <TableCell>
-                                                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+                                                <div className="font-medium">{app.fullName}</div>
+                                                <div className="text-xs text-muted-foreground">{app.rollNumber}</div>
+                                            </TableCell>
+                                            <TableCell>
+                                                <div className="text-sm">{app.department}</div>
+                                                <div className="text-xs text-muted-foreground">Year {app.year}</div>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Badge variant="outline" className="bg-primary/5 border-primary/20 text-primary">
                                                     {app.primaryDept}
-                                                </span>
-                                            </TableCell>
-                                            <TableCell className="text-xs text-muted-foreground">
-                                                {app.domains.join(', ')}
-                                            </TableCell>
-                                            <TableCell className="text-xs">
-                                                <div className="flex flex-col gap-1">
-                                                    <span>{app.email}</span>
-                                                    <span className="text-muted-foreground">{app.phone}</span>
+                                                </Badge>
+                                                <div className="text-xs text-muted-foreground mt-1 truncate max-w-[200px]">
+                                                    {app.domains.join(', ')}
                                                 </div>
+                                            </TableCell>
+                                            <TableCell>
+                                                <div className="flex">
+                                                    {[1, 2, 3, 4, 5].map((star) => (
+                                                        <Star
+                                                            key={star}
+                                                            className={`w-4 h-4 ${star <= (app.rating || 0) ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-700'}`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            </TableCell>
+                                            <TableCell className="text-center">
+                                                <Badge variant="outline" className={`capitalize ${getStatusColor(app.status)}`}>
+                                                    {app.status}
+                                                </Badge>
+                                            </TableCell>
+                                            <TableCell className="text-right">
+                                                <Button size="sm" variant="ghost" onClick={(e) => { e.stopPropagation(); setSelectedApp(app); }}>
+                                                    <Eye className="w-4 h-4" />
+                                                </Button>
                                             </TableCell>
                                         </TableRow>
                                     ))
@@ -265,6 +348,142 @@ const Admin = () => {
                         </Table>
                     </div>
                 </HolographicCard>
+
+                {/* Detailed View Modal */}
+                <Dialog open={!!selectedApp} onOpenChange={(open) => !open && setSelectedApp(null)}>
+                    <DialogContent className="max-w-3xl bg-black/90 border-white/10 text-foreground backdrop-blur-xl max-h-[90vh] overflow-y-auto">
+                        <DialogHeader>
+                            <DialogTitle className="text-2xl font-bold flex justify-between items-center">
+                                <span>{selectedApp?.fullName}</span>
+                                <Badge variant="outline" className="text-base font-normal">{selectedApp?.rollNumber}</Badge>
+                            </DialogTitle>
+                            <DialogDescription className="text-muted-foreground">
+                                Applied on {selectedApp?.submittedAt ? new Date(selectedApp.submittedAt).toLocaleDateString() : 'Unknown Date'}
+                            </DialogDescription>
+                        </DialogHeader>
+
+                        {selectedApp && (
+                            <div className="space-y-8 mt-4">
+                                {/* Rating & Actions Bar */}
+                                <div className="flex flex-col sm:flex-row justify-between items-center bg-white/5 p-4 rounded-xl border border-white/10 gap-4">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-sm font-medium text-muted-foreground mr-2">Rating:</span>
+                                        {[1, 2, 3, 4, 5].map((star) => (
+                                            <button
+                                                key={star}
+                                                onClick={() => updateApplication(selectedApp.id, { rating: star })}
+                                                className={`transition-transform hover:scale-110 focus:outline-none`}
+                                            >
+                                                <Star
+                                                    className={`w-6 h-6 ${star <= (selectedApp.rating || 0) ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-700 hover:text-yellow-400/50'}`}
+                                                />
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <Button
+                                            size="sm"
+                                            variant={selectedApp.status === 'rejected' ? 'destructive' : 'outline'}
+                                            onClick={() => updateApplication(selectedApp.id, { status: 'rejected' })}
+                                            className={selectedApp.status === 'rejected' ? '' : 'border-red-500/50 text-red-500 hover:bg-red-500/10 hover:border-red-500'}
+                                        >
+                                            <XCircle className="w-4 h-4 mr-2" />
+                                            Reject
+                                        </Button>
+                                        <Button
+                                            size="sm"
+                                            variant={selectedApp.status === 'neutral' ? 'secondary' : 'outline'}
+                                            onClick={() => updateApplication(selectedApp.id, { status: 'neutral' })}
+                                            className={selectedApp.status === 'neutral' ? 'bg-yellow-500/20 text-yellow-500 hover:bg-yellow-500/30' : 'border-yellow-500/50 text-yellow-500 hover:bg-yellow-500/10 hover:border-yellow-500'}
+                                        >
+                                            <MinusCircle className="w-4 h-4 mr-2" />
+                                            Neutral
+                                        </Button>
+                                        <Button
+                                            size="sm"
+                                            variant={selectedApp.status === 'selected' ? 'default' : 'outline'}
+                                            onClick={() => updateApplication(selectedApp.id, { status: 'selected' })}
+                                            className={selectedApp.status === 'selected'
+                                                ? 'bg-green-600 hover:bg-green-700 text-white'
+                                                : 'border-green-500/50 text-green-500 hover:bg-green-500/10 hover:border-green-500'
+                                            }
+                                        >
+                                            <CheckCircle className="w-4 h-4 mr-2" />
+                                            Select
+                                        </Button>
+                                    </div>
+                                </div>
+
+                                <div className="grid md:grid-cols-2 gap-8">
+                                    {/* Personal Info */}
+                                    <div className="space-y-4">
+                                        <h3 className="text-lg font-semibold text-primary border-b border-primary/20 pb-2">Personal Details</h3>
+                                        <div className="grid grid-cols-[100px_1fr] gap-2 text-sm">
+                                            <span className="text-muted-foreground">Email:</span>
+                                            <span>{selectedApp.email}</span>
+                                            <span className="text-muted-foreground">Phone:</span>
+                                            <span>{selectedApp.phone}</span>
+                                            <span className="text-muted-foreground">Department:</span>
+                                            <span>{selectedApp.department}</span>
+                                            <span className="text-muted-foreground">Year:</span>
+                                            <span>{selectedApp.year}</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Primary Choice */}
+                                    <div className="space-y-4">
+                                        <h3 className="text-lg font-semibold text-primary border-b border-primary/20 pb-2">Primary Choice</h3>
+                                        <div>
+                                            <Badge className="bg-primary hover:bg-primary/90 mb-2">{selectedApp.primaryDept}</Badge>
+                                            <div className="flex flex-wrap gap-1 mb-3">
+                                                {selectedApp.domains.map(d => (
+                                                    <Badge key={d} variant="outline" className="text-xs">{d}</Badge>
+                                                ))}
+                                            </div>
+                                            <div className="space-y-2">
+                                                <div>
+                                                    <span className="text-xs uppercase tracking-wider text-muted-foreground">Skills</span>
+                                                    <p className="text-sm bg-white/5 p-2 rounded-md border border-white/5">{selectedApp.skills}</p>
+                                                </div>
+                                                <div>
+                                                    <span className="text-xs uppercase tracking-wider text-muted-foreground">Reason</span>
+                                                    <p className="text-sm bg-white/5 p-2 rounded-md border border-white/5 max-h-[100px] overflow-y-auto">{selectedApp.reason}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Secondary Choice */}
+                                    {selectedApp.secondaryDept && (
+                                        <div className="space-y-4 md:col-span-2">
+                                            <h3 className="text-lg font-semibold text-primary/70 border-b border-primary/20 pb-2">Secondary Choice</h3>
+                                            <div className="grid md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <Badge variant="secondary" className="mb-2">{selectedApp.secondaryDept}</Badge>
+                                                    <div className="flex flex-wrap gap-1 mb-3">
+                                                        {selectedApp.secondaryDomains.map(d => (
+                                                            <Badge key={d} variant="outline" className="text-xs">{d}</Badge>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <div>
+                                                        <span className="text-xs uppercase tracking-wider text-muted-foreground">Skills</span>
+                                                        <p className="text-sm bg-white/5 p-2 rounded-md border border-white/5">{selectedApp.secondarySkills || 'N/A'}</p>
+                                                    </div>
+                                                    <div>
+                                                        <span className="text-xs uppercase tracking-wider text-muted-foreground">Reason</span>
+                                                        <p className="text-sm bg-white/5 p-2 rounded-md border border-white/5">{selectedApp.secondaryReason || 'N/A'}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                    </DialogContent>
+                </Dialog>
             </div>
         </div>
     );

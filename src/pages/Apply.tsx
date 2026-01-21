@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Send, User, GraduationCap, Code, FileText, Phone, ArrowRight, ChevronLeft, LogIn } from 'lucide-react';
@@ -8,8 +7,7 @@ import HolographicCard from '@/components/ui/HolographicCard';
 import RevealText from '@/components/ui/RevealText';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
-import { db } from '@/lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { supabase } from '@/lib/supabase';
 
 const Apply = () => {
     const { user, signInWithGoogle, loading: authLoading } = useAuth();
@@ -115,24 +113,34 @@ const Apply = () => {
         setIsSubmitting(true);
 
         try {
-            // Attempt to save to Firestore
-            // This will throw if API keys are missing or permissions denied
-            await addDoc(collection(db, 'applications'), {
-                ...formData,
+            // Attempt to save to Supabase
+            const { error } = await supabase.from('applications').insert({
+                user_id: user.uid,
                 email: user.email,
-                userId: user.uid,
-                createdAt: serverTimestamp(),
+                full_name: formData.fullName,
+                roll_number: formData.rollNumber,
+                phone: formData.phone,
+                department: formData.department,
+                year: formData.year,
+                primary_dept: formData.primaryDept,
+                domains: formData.domains,
+                skills: formData.skills,
+                reason: formData.reason,
+                secondary_dept: formData.secondaryDept,
+                secondary_domains: formData.secondaryDomains,
+                secondary_skills: formData.secondarySkills,
+                secondary_reason: formData.secondaryReason,
                 status: 'pending'
             });
 
-            console.log("Application saved to Firestore successfully");
+            if (error) throw error;
+
+            console.log("Application saved to Supabase successfully");
 
             setIsSubmitting(false);
             setIsSubmitted(true);
         } catch (error) {
             console.error('Error submitting application:', error);
-            // Even if Firestore fails (likely due to config), we show success to user if in development to not block flow?
-            // "There should no reason for the loss of data" -> We should alert the user if it fails!
             alert("Warning: Application could not be saved to the database. Please check console/admin settings.");
             setIsSubmitting(false);
         }

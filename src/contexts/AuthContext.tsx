@@ -1,8 +1,6 @@
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
-import { useGoogleLogin, googleLogout, TokenResponse } from '@react-oauth/google';
-import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
-import axios from 'axios';
+import { supabase } from '@/lib/supabase';
+import { User as SupabaseUser } from '@supabase/supabase-js';
 
 interface User {
   email: string;
@@ -35,83 +33,67 @@ export const useAuth = () => {
 // Provider component that wraps your app and makes auth object ... available to any child component that calls useAuth().
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Start loading true to check auth state
   const [error, setError] = useState<string | null>(null);
 
-  // Check if user is already logged in (from localStorage)
+  // Monitor Supabase Auth State
   useEffect(() => {
-    const savedUser = localStorage.getItem('nova_cps_user');
-    if (savedUser) {
-      try {
-        setUser(JSON.parse(savedUser));
-      } catch (err) {
-        console.error('Failed to parse saved user:', err);
-        localStorage.removeItem('nova_cps_user');
+    // Check active sessions and sets the user
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setUser(mapSupabaseUser(session.user));
+      } else {
+        setUser(null);
       }
-    }
+      setLoading(false);
+    });
+
+    // Listen for changes on auth state (logged in, signed out, etc.)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setUser(mapSupabaseUser(session.user));
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const login = useGoogleLogin({
-    onSuccess: async (tokenResponse: TokenResponse) => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        // 1. Authenticate with Firebase (Required for Database Access)
-        const credential = GoogleAuthProvider.credential(null, tokenResponse.access_token);
-        await signInWithCredential(auth, credential);
-
-        // 2. Get user info from Google (for display profile)
-        const userInfoResponse = await axios.get(
-          'https://www.googleapis.com/oauth2/v3/userinfo',
-          {
-            headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
-          }
-        );
-
-        const { email, name, picture, sub } = userInfoResponse.data;
-
-        // Validate VIT email
-        // if (!email.endsWith('@vitstudent.ac.in')) {
-        //   setError('Only @vitstudent.ac.in emails are allowed');
-        //   setLoading(false);
-        //   return;
-        // }
-
-        // Create user object
-        const userData: User = {
-          email,
-          displayName: name,
-          photoURL: picture,
-          uid: sub,
-        };
-
-        setUser(userData);
-        localStorage.setItem('nova_cps_user', JSON.stringify(userData));
-        setLoading(false);
-      } catch (err: any) {
-        console.error('Login error:', err);
-        setError(err?.message || 'Failed to sign in. Please try again.');
-        setLoading(false);
-      }
-    },
-    onError: () => {
-      setError('Login failed. Please try again.');
-      setLoading(false);
-    },
-  });
-
-  const signInWithGoogle = () => {
-    setLoading(true);
-    setError(null);
-    login();
+  const mapSupabaseUser = (sbUser: SupabaseUser): User => {
+    return {
+      email: sbUser.email || '',
+      displayName: sbUser.user_metadata?.full_name || sbUser.user_metadata?.name || '',
+      photoURL: sbUser.user_metadata?.avatar_url || sbUser.user_metadata?.picture || '',
+      uid: sbUser.id,
+    };
   };
 
-  const logout = () => {
-    googleLogout();
-    setUser(null);
-    localStorage.removeItem('nova_cps_user');
+  const signInWithGoogle = async () => {
+    setLoading(true);
     setError(null);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+      });
+      if (error) throw error;
+      // Redirect happens automatically
+    } catch (err: any) {
+      console.error('Login error:', err);
+      setError(err?.message || 'Failed to sign in. Please try again.');
+      setLoading(false);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+    } catch (err: any) {
+      console.error('Logout error:', err);
+      setError('Failed to log out.');
+    }
   };
 
   const clearError = () => {
