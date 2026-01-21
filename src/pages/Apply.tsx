@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Send, User, GraduationCap, Code, FileText, Phone, ArrowRight, ChevronLeft, LogIn } from 'lucide-react';
+import { ArrowLeft, Send, User, GraduationCap, Code, FileText, Phone, ArrowRight, ChevronLeft, LogIn, Trophy, Clock, XOctagon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TechGridBackground from '@/components/ui/TechGridBackground';
 import HolographicCard from '@/components/ui/HolographicCard';
@@ -30,6 +30,35 @@ const Apply = () => {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [existingApp, setExistingApp] = useState<any>(null);
+    const [checkingStatus, setCheckingStatus] = useState(true);
+
+    useEffect(() => {
+        if (user) {
+            checkApplicationStatus();
+        } else {
+            setCheckingStatus(false);
+        }
+    }, [user]);
+
+    const checkApplicationStatus = async () => {
+        if (!user) return;
+        try {
+            const { data, error } = await supabase
+                .from('applications')
+                .select('*')
+                .eq('user_id', user.uid)
+                .single();
+
+            if (data) {
+                setExistingApp(data);
+            }
+        } catch (error) {
+            // No application found or error
+        } finally {
+            setCheckingStatus(false);
+        }
+    };
 
     const domainOptions: Record<string, string[]> = {
         'Technical': ['IoT & Embedded Systems', 'Robotics & Automation', 'AI & Edge Computing', 'Cybersecurity', 'Web & App Development'],
@@ -139,6 +168,7 @@ const Apply = () => {
 
             setIsSubmitting(false);
             setIsSubmitted(true);
+            setExistingApp({ ...formData, status: 'pending' }); // Optimistic set
         } catch (error) {
             console.error('Error submitting application:', error);
             alert("Warning: Application could not be saved to the database. Please check console/admin settings.");
@@ -157,6 +187,90 @@ const Apply = () => {
     const secondarySkillLabel = formData.secondaryDept ? (skillLabels[formData.secondaryDept] || skillLabels['default']) : skillLabels['default'];
     const secondarySkillPlaceholder = formData.secondaryDept ? (skillPlaceholders[formData.secondaryDept] || skillPlaceholders['default']) : skillPlaceholders['default'];
     const secondaryReasonPlaceholder = formData.secondaryDept ? (reasonPlaceholders[formData.secondaryDept] || reasonPlaceholders['default']) : reasonPlaceholders['default'];
+
+    if (authLoading || checkingStatus) {
+        return (
+            <div className="min-h-screen bg-black flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            </div>
+        );
+    }
+
+    if (existingApp) {
+        return (
+            <div className="min-h-screen flex items-center justify-center relative overflow-hidden text-foreground">
+                <TechGridBackground />
+                <div className="absolute inset-0 bg-background/80 pointer-events-none -z-10" />
+
+                <div className="container mx-auto px-4 py-8">
+                    <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors mb-8 absolute top-8 left-8">
+                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        Back to Home
+                    </Link>
+
+                    <HolographicCard className="p-12 max-w-lg w-full text-center mx-auto mt-12 bg-black/40 backdrop-blur-xl border-primary/20">
+                        {existingApp.status === 'selected' ? (
+                            <>
+                                <div className="w-24 h-24 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-500/50 shadow-[0_0_30px_rgba(34,197,94,0.3)]">
+                                    <Trophy className="w-12 h-12 text-green-500" />
+                                </div>
+                                <h2 className="text-3xl font-heading font-bold mb-2 text-white">Congratulations!</h2>
+                                <div className="inline-block px-4 py-1 rounded-full bg-green-500/20 text-green-400 border border-green-500/30 mb-6 text-sm font-medium">
+                                    Application Selected
+                                </div>
+                                <p className="text-gray-300 mb-8 leading-relaxed">
+                                    We are thrilled to welcome you to the team! Your application stood out, and we can't wait to see what you'll build with us.
+                                </p>
+                                <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-bold h-12 text-lg shadow-lg">
+                                    Join the Community
+                                </Button>
+                            </>
+                        ) : existingApp.status === 'rejected' ? (
+                            <>
+                                <div className="w-20 h-20 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <XOctagon className="w-10 h-10 text-red-500/70" />
+                                </div>
+                                <h2 className="text-2xl font-heading font-bold mb-2 text-white">Application Status</h2>
+                                <div className="inline-block px-3 py-1 rounded-full bg-red-500/10 text-red-500/80 border border-red-500/20 mb-6 text-xs uppercase tracking-wider">
+                                    Not Selected
+                                </div>
+                                <p className="text-muted-foreground mb-6 text-sm">
+                                    Thank you for your interest in NOVA CPS. Due to the high volume of applications, we are unfortunately unable to offer you a position at this time.
+                                </p>
+                                <p className="text-muted-foreground mb-8 text-sm">
+                                    We encourage you to keep building and apply again in our next recruitment cycle.
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
+                                    <Clock className="w-10 h-10 text-primary" />
+                                </div>
+                                <h2 className="text-3xl font-heading font-bold mb-2 text-white">Under Review</h2>
+                                <div className="inline-block px-4 py-1 rounded-full bg-yellow-500/10 text-yellow-500 border border-yellow-500/30 mb-6 text-sm font-medium">
+                                    Status: Pending
+                                </div>
+                                <p className="text-gray-300 mb-8 leading-relaxed">
+                                    We have received your application and it is currently being reviewed by our team.
+                                    Hold tight! We will update you soon.
+                                </p>
+                                <div className="p-4 bg-white/5 rounded-lg border border-white/5 text-left mb-6">
+                                    <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Applicant</div>
+                                    <div className="font-medium text-white">{existingApp.full_name}</div>
+                                    <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1 mt-3">Primary Choice</div>
+                                    <div className="font-medium text-primary">{existingApp.primary_dept}</div>
+                                </div>
+                            </>
+                        )}
+
+                        <Button asChild variant="outline" className="w-full border-white/10 hover:bg-white/5">
+                            <Link to="/">Return to Home</Link>
+                        </Button>
+                    </HolographicCard>
+                </div>
+            </div>
+        );
+    }
 
     if (isSubmitted) {
         return (

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import * as XLSX from 'xlsx';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldAlert, Download, Search, Loader2, Eye, Star, CheckCircle, XCircle, MinusCircle } from 'lucide-react';
+import { ShieldAlert, Download, Search, Loader2, Eye, Star, CheckCircle, XCircle, MinusCircle, Trash2 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import HolographicCard from '@/components/ui/HolographicCard';
 import { Button } from '@/components/ui/button';
@@ -143,71 +144,54 @@ const Admin = () => {
         }
     };
 
-    const downloadCSV = () => {
-        const headers = ['Full Name', 'Email', 'Roll Number', 'Phone', 'Year', 'Department', 'Primary Choice', 'Domains', 'Status', 'Rating'];
-        const csvContent = [
-            headers.join(','),
-            ...applications.map(app => [
-                `"${app.fullName}"`,
-                app.email,
-                app.rollNumber,
-                app.phone,
-                app.year,
-                `"${app.department}"`,
-                `"${app.primaryDept}"`,
-                `"${app.domains.join(', ')}"`,
-                app.status,
-                app.rating
-            ].join(','))
-        ].join('\n');
+    const deleteApplication = async (id: string) => {
+        if (!confirm("Are you sure you want to delete this application? This action cannot be undone.")) {
+            return;
+        }
 
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const link = document.createElement('a');
-        if (link.download !== undefined) {
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', 'nova_applications.csv');
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        try {
+            const { error } = await supabase
+                .from('applications')
+                .delete()
+                .eq('id', id);
+
+            if (error) throw error;
+
+            setApplications(prev => prev.filter(app => app.id !== id));
+            if (selectedApp?.id === id) {
+                setSelectedApp(null);
+            }
+        } catch (error) {
+            console.error("Error deleting application:", error);
+            alert("Failed to delete application. Please try again.");
         }
     };
 
-    const generateSampleData = async () => {
-        setIsLoading(true);
-        const samples = [
-            {
-                full_name: "Bruce Update",
-                email: "bruce.wayne2024@vitstudent.ac.in",
-                user_id: "sample_id_x",
-                roll_number: "21BCE9999",
-                department: "CSE (Core)",
-                year: "3",
-                phone: "9999999999",
-                primary_dept: "Technical",
-                domains: ["AI & Edge Computing"],
-                skills: "Python, TensorFlow, PyTorch, C++",
-                reason: "I want to build Jarvis.",
-                secondary_dept: "Management",
-                secondary_domains: ["Team Coordination"],
-                secondary_skills: "Leadership, Public Speaking",
-                secondary_reason: "I run Wayne Enterprises.",
-                status: 'pending',
-                rating: 0
-            }
-        ];
+    const downloadExcel = () => {
+        const data = applications.map(app => ({
+            'Full Name': app.fullName,
+            'Email': app.email,
+            'Roll Number': app.rollNumber,
+            'Phone': app.phone,
+            'Year': app.year,
+            'Department': app.department,
+            'Primary Choice': app.primaryDept,
+            'Primary Domains': app.domains.join(', '),
+            'Primary Skills': app.skills,
+            'Primary Reason': app.reason,
+            'Secondary Choice': app.secondaryDept,
+            'Secondary Domains': app.secondaryDomains.join(', '),
+            'Secondary Skills': app.secondarySkills,
+            'Secondary Reason': app.secondaryReason,
+            'Status': app.status,
+            'Rating': app.rating,
+            'Submitted At': app.submittedAt ? new Date(app.submittedAt).toLocaleString() : ''
+        }));
 
-        try {
-            const { error } = await supabase.from('applications').insert(samples);
-            if (error) throw error;
-            fetchApplications();
-            alert("Sample data added!");
-        } catch (error) {
-            console.error("Error adding sample data: ", error);
-        } finally {
-            setIsLoading(false);
-        }
+        const ws = XLSX.utils.json_to_sheet(data);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Applications");
+        XLSX.writeFile(wb, "nova_applications.xlsx");
     };
 
     if (authLoading) return <div className="min-h-screen bg-black flex items-center justify-center"><Loader2 className="animate-spin text-primary" /></div>;
@@ -265,12 +249,9 @@ const Admin = () => {
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
-                        <Button onClick={generateSampleData} variant="outline" className="border-white/10 hover:bg-white/5">
-                            Generate Sample
-                        </Button>
-                        <Button onClick={downloadCSV} className="bg-primary hover:bg-primary/90">
+                        <Button onClick={downloadExcel} className="bg-primary hover:bg-primary/90">
                             <Download className="w-4 h-4 mr-2" />
-                            Export CSV
+                            Export Excel
                         </Button>
                     </div>
                 </div>
@@ -479,6 +460,17 @@ const Admin = () => {
                                             </div>
                                         </div>
                                     )}
+                                    {/* Delete Action */}
+                                    <div className="pt-4 border-t border-white/10 flex justify-end">
+                                        <Button
+                                            variant="destructive"
+                                            onClick={() => deleteApplication(selectedApp.id)}
+                                            className="bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/50"
+                                        >
+                                            <Trash2 className="w-4 h-4 mr-2" />
+                                            Delete Application
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         )}

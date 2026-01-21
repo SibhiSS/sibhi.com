@@ -38,24 +38,34 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Monitor Supabase Auth State
   useEffect(() => {
-    // Check active sessions and sets the user
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const validateAndSetUser = async (session: any) => {
       if (session?.user) {
-        setUser(mapSupabaseUser(session.user));
+        const email = session.user.email;
+        const isAdmin = email === 'sibhis5223@gmail.com';
+        const isVitStudent = email?.endsWith('@vitstudent.ac.in');
+        const isVitStaff = email?.endsWith('@vit.ac.in');
+
+        if (!isAdmin && !isVitStudent && !isVitStaff) {
+          await supabase.auth.signOut();
+          alert('Access Restricted: Please sign in with your VIT email address (@vitstudent.ac.in or @vit.ac.in).');
+          setUser(null);
+        } else {
+          setUser(mapSupabaseUser(session.user));
+        }
       } else {
         setUser(null);
       }
       setLoading(false);
+    };
+
+    // Check active sessions and sets the user
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      validateAndSetUser(session);
     });
 
     // Listen for changes on auth state (logged in, signed out, etc.)
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) {
-        setUser(mapSupabaseUser(session.user));
-      } else {
-        setUser(null);
-      }
-      setLoading(false);
+      validateAndSetUser(session);
     });
 
     return () => subscription.unsubscribe();

@@ -1,9 +1,12 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Rocket, Zap, Users, Award, ArrowRight } from 'lucide-react';
 import HolographicCard from '@/components/ui/HolographicCard';
 import { Button } from '@/components/ui/button';
 import RevealText from '@/components/ui/RevealText';
 import { Link } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/lib/supabase';
 
 const benefits = [
   { icon: Zap, title: 'Hands-on Projects', description: 'Work on real CPS projects' },
@@ -12,6 +15,23 @@ const benefits = [
 ];
 
 const JoinSection = () => {
+  const { user } = useAuth();
+  const [hasApplied, setHasApplied] = useState(false);
+
+  useEffect(() => {
+    const checkStatus = async () => {
+      if (!user) return;
+      const { data } = await supabase
+        .from('applications')
+        .select('id')
+        .eq('user_id', user.uid)
+        .single();
+
+      if (data) setHasApplied(true);
+    };
+
+    checkStatus();
+  }, [user]);
   return (
     <section id="join" className="py-24">
       <div className="container mx-auto px-6">
@@ -65,7 +85,7 @@ const JoinSection = () => {
             asChild
           >
             <Link to="/apply">
-              Apply Now
+              {hasApplied ? "View Application Status" : "Apply Now"}
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </Button>
