@@ -16,9 +16,9 @@ export const ease = {
 
 // ── Cinematic Transitions ──
 export const transition: Record<string, Transition> = {
-  slow: { duration: 1.2, ease: ease.out as unknown as number[] },
-  medium: { duration: 0.8, ease: ease.out as unknown as number[] },
-  fast: { duration: 0.5, ease: ease.out as unknown as number[] },
+  slow: { duration: 1.2, ease: ease.out as [number, number, number, number] },
+  medium: { duration: 0.8, ease: ease.out as [number, number, number, number] },
+  fast: { duration: 0.5, ease: ease.out as [number, number, number, number] },
   spring: ease.spring,
   springGentle: ease.springGentle,
 };
