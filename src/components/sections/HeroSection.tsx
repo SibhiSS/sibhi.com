@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { hero } from "@/data/portfolio";
 
@@ -9,7 +10,7 @@ function AnimatedName() {
 
   return (
     <motion.h1
-      className="hero-name flex items-center justify-center flex-wrap"
+      className="hero-name flex items-center justify-start flex-wrap"
       aria-label={hero.name}
     >
       {letters.map((letter, i) => (
@@ -148,10 +149,12 @@ export default function HeroSection() {
     >
       {/* Atmospheric Background */}
       <div className="absolute inset-0">
-        {/* Gradient Layers */}
+        {/* Base Gradient Layer */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-[#080808] to-[#0a0a0a]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.015)_0%,transparent_70%)]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(ellipse,rgba(120,130,140,0.06)_0%,transparent_60%)] blur-3xl" />
+
+        {/* Lighting Accents */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.015)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(ellipse,rgba(120,130,140,0.06)_0%,transparent_60%)] blur-3xl pointer-events-none" />
 
         {/* Particle Field */}
         <ParticleField />
@@ -170,73 +173,107 @@ export default function HeroSection() {
       {/* Content */}
       <motion.div
         style={{ opacity, y, scale }}
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 items-center h-screen pt-20 md:pt-0"
       >
-        {/* Overline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8"
-        >
-          <span className="inline-block text-[10px] md:text-xs tracking-[0.35em] uppercase text-white/30 font-light">
-            Computer Science Engineering · VIT Chennai
-          </span>
-        </motion.div>
-
-        {/* Name */}
-        <AnimatedName />
-
-        {/* Decorative Line */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1.4, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="w-24 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto my-8 origin-center"
-        />
-
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-white/35 text-sm md:text-base lg:text-lg tracking-[0.08em] font-light max-w-2xl mx-auto leading-relaxed"
-        >
-          {hero.tagline}
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-center gap-4 mt-12"
-        >
-          <a
-            href="#projects"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .querySelector("#projects")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="group relative px-8 py-3 text-xs tracking-[0.2em] uppercase text-white/80 overflow-hidden rounded-full border border-white/10 hover:border-white/20 transition-all duration-500"
+        {/* Left Side — Typography */}
+        <div className="flex flex-col items-start text-left z-20">
+          {/* Greeting */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-white/60 text-base md:text-lg font-light tracking-wide mb-2 pl-2"
           >
-            <span className="relative z-10">View Work</span>
-            <div className="absolute inset-0 bg-white/[0.03] group-hover:bg-white/[0.07] transition-all duration-500" />
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .querySelector("#contact")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="px-8 py-3 text-xs tracking-[0.2em] uppercase text-white/40 hover:text-white/70 transition-all duration-500"
+            Hi, I am
+          </motion.div>
+
+          {/* Name */}
+          <AnimatedName />
+
+          {/* Overline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-6 pl-2"
           >
-            Contact
-          </a>
+            <span className="inline-block text-[10px] md:text-xs tracking-[0.35em] uppercase text-white/30 font-light">
+              Computer Science Engineering · VIT Chennai
+            </span>
+          </motion.div>
+
+          {/* Decorative Line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1.4, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="w-24 h-[1px] bg-gradient-to-r from-white/20 to-transparent my-8 origin-left"
+          />
+
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-white/35 text-sm md:text-base lg:text-lg tracking-[0.08em] font-light max-w-md leading-relaxed"
+          >
+            {hero.tagline}
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center gap-6 mt-12"
+          >
+            <a
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .querySelector("#projects")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="group relative px-8 py-3 text-xs tracking-[0.2em] uppercase text-white/80 overflow-hidden rounded-full border border-white/10 hover:border-white/20 transition-all duration-500"
+            >
+              <span className="relative z-10">View Work</span>
+              <div className="absolute inset-0 bg-white/[0.03] group-hover:bg-white/[0.07] transition-all duration-500" />
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .querySelector("#contact")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="text-xs tracking-[0.2em] uppercase text-white/40 hover:text-white/70 transition-all duration-500"
+            >
+              Contact
+            </a>
+          </motion.div>
+        </div>
+
+        {/* Right Side — Image */}
+        <motion.div
+          initial={{ opacity: 0, filter: "blur(10px)" }}
+          animate={{ opacity: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute md:relative right-0 bottom-0 md:bottom-auto w-full h-[60vh] md:h-[80vh] opacity-30 md:opacity-100 pointer-events-none flex items-end justify-end md:pl-10 pb-10"
+        >
+          <div className="relative w-full md:w-[90%] h-full rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
+            {/* Fading gradient at the bottom inside the rounded container */}
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#030303] via-[#030303]/50 to-transparent z-10" />
+            
+            <Image
+              src="/profile-main.jpg"
+              alt="Sibhi S"
+              fill
+              className="object-cover object-center grayscale opacity-90"
+              priority
+            />
+          </div>
         </motion.div>
       </motion.div>
 
