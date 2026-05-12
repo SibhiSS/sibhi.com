@@ -96,7 +96,7 @@ export default function AboutSection() {
             className="flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-2xl border border-white/[0.05] bg-white/[0.01] p-4 md:p-6"
           >
             <img
-              src="https://github-readme-streak-stats.herokuapp.com/?user=SibhiSS&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=a3a3a3&sideLabels=a3a3a3&dates=737373&stroke=ffffff20"
+              src="https://github-readme-streak-stats.herokuapp.com/?user=SibhiSS&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=a3a3a3&sideLabels=a3a3a3&dates=737373&stroke=ffffff20&v=1"
               alt="Sibhi's GitHub Streak Stats"
               className="w-full object-contain"
             />
@@ -109,7 +109,7 @@ export default function AboutSection() {
             className="flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-2xl border border-white/[0.05] bg-white/[0.01] p-4 md:p-6"
           >
             <img
-              src="https://awesome-github-stats.azurewebsites.net/user-stats/SibhiSS?cardType=level-alternate&theme=github-dark&fontFamily=Inter%20Tight&preferLogin=true&Background=000000&borderRadius=10"
+              src="https://awesome-github-stats.azurewebsites.net/user-stats/SibhiSS?cardType=level-alternate&theme=github-dark&fontFamily=Inter%20Tight&preferLogin=true&Background=000000&borderRadius=10&v=1"
               alt="My Awesome Stats"
               className="w-full object-contain"
             />
