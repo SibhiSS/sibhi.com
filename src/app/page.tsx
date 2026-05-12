@@ -2,7 +2,9 @@
 
 import dynamic from "next/dynamic";
 import SmoothScroll from "@/components/SmoothScroll";
+import BackgroundEffect from "@/components/BackgroundEffect";
 import Navigation from "@/components/Navigation";
+import LogoMarquee from "@/components/LogoMarquee";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
 import SkillsSection from "@/components/sections/SkillsSection";
@@ -22,36 +24,20 @@ const CustomCursor = dynamic(() => import("@/components/CustomCursor"), {
 export default function HomePage() {
   return (
     <SmoothScroll>
+      <BackgroundEffect />
       <CustomCursor />
       <Navigation />
 
       <main>
         <HeroSection />
-
-        {/* Section Divider */}
-        <div className="section-divider" />
-
         <AboutSection />
-        <div className="section-divider" />
-
         <SkillsSection />
-        <div className="section-divider" />
-
+        <LogoMarquee />
         <ProjectsSection />
-        <div className="section-divider" />
-
         <ExperienceSection />
-        <div className="section-divider" />
-
         <EducationSection />
-        <div className="section-divider" />
-
         <ResearchSection />
-        <div className="section-divider" />
-
         <ResumeSection />
-        <div className="section-divider" />
-
         <ContactSection />
       </main>
 

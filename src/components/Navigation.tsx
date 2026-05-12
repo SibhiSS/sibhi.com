@@ -18,7 +18,8 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 100);
+      // Show nav after scrolling 300px
+      setScrolled(window.scrollY > 300);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -36,11 +37,11 @@ export default function Navigation() {
     <>
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+        animate={scrolled ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-700 ${
           scrolled
-            ? "bg-[rgba(8,8,8,0.8)] backdrop-blur-2xl border-b border-white/[0.04]"
+            ? "bg-[rgba(0,0,0,0.8)] backdrop-blur-2xl border-b border-white/[0.04]"
             : "bg-transparent"
         }`}
       >

@@ -106,7 +106,7 @@ function ProjectModal({
         exit={{ opacity: 0, y: 40, scale: 0.97 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
-        className="relative max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-3xl border border-white/[0.06] bg-[#0c0c0c] p-8 md:p-12"
+        className="relative max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-3xl border border-white/[0.06] bg-black p-8 md:p-12"
       >
         {/* Close button */}
         <button
@@ -190,9 +190,7 @@ export default function ProjectsSection() {
 
   return (
     <>
-      <section id="projects" className="relative py-32 md:py-44">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.006)_0%,transparent_50%)]" />
-
+      <section id="projects" className="relative py-16 md:py-22">
         <div className="relative max-w-6xl mx-auto px-6 md:px-12">
           {/* Header */}
           <motion.div

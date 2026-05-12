@@ -78,49 +78,19 @@ export const about = {
 export const skills: SkillCategory[] = [
   {
     category: "Programming",
-    items: ["Python", "C/C++", "JavaScript", "TypeScript", "Java", "SQL"],
+    items: ["Python", "C", "C++", "JavaScript", "Java", "SQL"],
   },
   {
     category: "Cybersecurity",
-    items: [
-      "Network Security",
-      "SIEM Systems",
-      "Threat Analysis",
-      "Penetration Testing",
-      "Cryptography",
-      "Digital Forensics",
-    ],
+    items: ["Networking Techniques", "SIEM"],
   },
   {
     category: "Machine Learning",
-    items: [
-      "Deep Learning",
-      "Neural Networks",
-      "NLP",
-      "Computer Vision",
-      "TensorFlow",
-      "PyTorch",
-    ],
+    items: ["PyTorch", "Deep Learning", "NLP", "CNN"],
   },
   {
     category: "Systems & Infrastructure",
-    items: [
-      "Linux Administration",
-      "Docker",
-      "Cloud Computing",
-      "Networking",
-      "Distributed Systems",
-    ],
-  },
-  {
-    category: "Research & Analysis",
-    items: [
-      "Quantum Algorithms",
-      "Research Methodology",
-      "Technical Writing",
-      "Data Analysis",
-      "Statistical Modeling",
-    ],
+    items: ["Linux Administration", "Docker", "Cloud Computing", "Networking"],
   },
   {
     category: "Tools & Frameworks",
@@ -186,11 +156,7 @@ export const experiences: Experience[] = [
     description:
       "Selected as a Contributor and Ambassador for GSSoC, actively engaging in open-source software development, global collaboration, and community building.",
     tags: ["Open Source", "Community"],
-    tasks: [
-      "Mentored beginners in open-source contribution and git workflows.",
-      "Contributed high-quality code to various open-source repositories.",
-      "Represented the program and promoted open-source awareness.",
-    ],
+    tasks: [],
     postLink: "https://www.linkedin.com/posts/sibhis_selected-for-girlscript-summer-of-code-2026-activity-7456039149490593792-Tn2u",
     images: ["/gssoc-1.jpg", "/gssoc-2.jpg", "/gssoc-3.jpg"],
     imageLayout: "badge",
@@ -205,9 +171,9 @@ export const experiences: Experience[] = [
       "ML Research Intern focusing on advanced Machine Learning applications and hardware-accelerated processing using CUDA.",
     tags: ["Machine Learning", "CUDA", "Research"],
     tasks: [
-      "Researched ML models for cyber-physical systems.",
-      "Optimized data processing pipelines utilizing CUDA for GPU acceleration.",
-      "Collaborated with professors and researchers on publication drafts.",
+      "Conducting research in advanced image classification techniques.",
+      "Analyzed and compared the performance of 15 different machine learning models using the Intel Image Dataset.",
+      "Developed and implemented custom Convolutional Neural Network (CNN) architectures.",
     ],
     logo: "/vit-logo-new.jpg",
   },
@@ -242,7 +208,7 @@ export const education: Education[] = [
   },
   {
     id: "edu-2",
-    degree: "Grade 1 to 12",
+    degree: "Secondary & Higher Secondary Education",
     institution: "The Ashok Leyland School, Hosur",
     period: "Completed 2024",
     logo: "/tals-logo.jpg",

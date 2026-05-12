@@ -13,9 +13,7 @@ const statusStyles: Record<string, { label: string; color: string }> = {
 
 export default function ResearchSection() {
   return (
-    <section id="research" className="relative py-32 md:py-44">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(255,255,255,0.005)_0%,transparent_50%)]" />
-
+    <section id="research" className="relative py-16 md:py-22">
       <div className="relative max-w-6xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
