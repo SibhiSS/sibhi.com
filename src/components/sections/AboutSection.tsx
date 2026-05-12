@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { about } from "@/data/portfolio";
 import { fadeUp, staggerContainer } from "@/lib/animations";
+import GitHubContribGraph from "@/components/GitHubContribGraph";
 
 export default function AboutSection() {
   return (
@@ -114,38 +115,7 @@ export default function AboutSection() {
           </div>
 
           {/* Bottom Section: Contribution Graph (Exact GitHub UI) */}
-          <div className="w-full rounded-3xl border border-white/[0.05] bg-white/[0.01] p-6 md:p-10 overflow-hidden group">
-            <div className="flex justify-between items-center mb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-white/20 font-medium">Live Contribution Stream</span>
-              </div>
-              <a 
-                href="https://github.com/SibhiSS" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="text-[10px] tracking-[0.2em] uppercase text-white/40 hover:text-white/80 transition-colors"
-              >
-                View Profile →
-              </a>
-            </div>
-
-            {/* The "GitHub Frame" */}
-            <div className="bg-[#0d1117] rounded-xl border border-[#30363d] p-6 md:p-8">
-              <div className="mb-6 px-1">
-                <span className="text-sm md:text-base font-normal text-[#e6edf3]">199 contributions in the last year</span>
-              </div>
-
-              <div className="relative w-full overflow-x-auto scrollbar-hide rounded-lg border border-[#30363d] bg-[#0d1117] p-4">
-                <img
-                  src="https://ghchart.rshah.org/34d399/SibhiSS"
-                  alt="Sibhi's GitHub Contribution Graph"
-                  className="min-w-[850px] w-full object-contain"
-                  style={{ filter: "invert(1) hue-rotate(180deg) brightness(1.15) contrast(1.05)" }}
-                />
-              </div>
-            </div>
-          </div>
+          <GitHubContribGraph />
         </motion.div>
       </div>
     </section>
