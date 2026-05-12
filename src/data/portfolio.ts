@@ -219,27 +219,19 @@ export const education: Education[] = [
 export const research: ResearchEntry[] = [
   {
     id: "research-1",
-    title: "Quantum-Resistant Cryptographic Protocols",
-    area: "Post-Quantum Cryptography",
+    title: "Securing Digital Twin Sync with QKD",
+    area: "Quantum Cryptography × CPS",
     description:
-      "Investigating lattice-based cryptographic schemes and their practical implementation for securing communications against quantum adversaries.",
+      "Investigating the implementation of Quantum Key Distribution (QKD) protocols to secure real-time data synchronization between physical assets and their digital twins.",
     status: "ongoing",
   },
   {
     id: "research-2",
-    title: "ML-Driven Anomaly Detection in Network Traffic",
-    area: "Machine Learning × Cybersecurity",
+    title: "ML Image Classification",
+    area: "Machine Learning × Computer Vision",
     description:
-      "Developing hybrid deep learning architectures that combine autoencoders with attention mechanisms for real-time network intrusion detection.",
+      "Analyzing and comparing the performance of multiple machine learning models and developing custom Convolutional Neural Network (CNN) architectures.",
     status: "ongoing",
-  },
-  {
-    id: "research-3",
-    title: "Quantum Algorithm Optimization",
-    area: "Quantum Computing",
-    description:
-      "Exploring variational quantum eigensolver (VQE) optimizations and their applications in computational chemistry simulations.",
-    status: "exploring",
   },
 ];
 
