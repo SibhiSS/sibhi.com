@@ -144,13 +144,12 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: "sentinel-siem",
-    title: "Sentinel SIEM",
+    id: "home-lab",
+    title: "Self-Hosted Cloud Server — Home Lab",
     description:
-      "A browser-based log analysis and incident management system inspired by SIEM architecture. Enables client-side ingestion, parsing, rule-based detection, and visualization of log data.",
-    tags: ["HTML", "CSS", "JavaScript", "Security"],
-    github: "https://github.com/SibhiSS/Sentinel-SIEM",
-    live: "https://sentinel-siem.vercel.app",
+      "Converted an old laptop into a Linux server and deployed a containerized stack — Nextcloud, PostgreSQL, Redis, and Nginx as a reverse proxy, securely exposed via Cloudflare Tunnel on a custom domain.",
+    longDescription: "Architecture: Cloudflare → Tunnel → Nginx → Nextcloud → PostgreSQL",
+    tags: ["Linux", "Docker", "Nginx", "PostgreSQL", "Cloudflare"],
     featured: true,
   },
   {
@@ -168,30 +167,30 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     id: "exp-1",
-    role: "Security Research Intern",
-    organization: "VIT Chennai — Cybersecurity Lab",
-    period: "2025 — Present",
+    role: "Contributor and Ambassador",
+    organization: "GirlScript Summer of Code",
+    period: "Apr 2026 — Present",
     description:
-      "Contributing to research in network security and SIEM system development. Analyzing threat patterns and developing automated detection pipelines for campus infrastructure.",
-    tags: ["Cybersecurity", "Research", "SIEM"],
+      "Selected as a Contributor and Ambassador for GSSoC, actively engaging in open-source software development, global collaboration, and community building.",
+    tags: ["Open Source", "Community"],
   },
   {
     id: "exp-2",
-    role: "Technical Lead",
-    organization: "Coding Club — VIT Chennai",
-    period: "2024 — Present",
+    role: "Summer Research Intern",
+    organization: "Centre for Cyber Physical Systems, VIT Chennai",
+    period: "Mar 2026 — Present",
     description:
-      "Leading technical workshops on security fundamentals and modern web development. Mentoring junior students in competitive programming and system design.",
-    tags: ["Leadership", "Mentoring", "Technical"],
+      "ML Research Intern focusing on advanced Machine Learning applications and hardware-accelerated processing using CUDA.",
+    tags: ["Machine Learning", "CUDA", "Research"],
   },
   {
     id: "exp-3",
-    role: "Open Source Contributor",
-    organization: "Various Projects",
-    period: "2023 — Present",
+    role: "Associate Operations Team Lead",
+    organization: "IEEE Solid-State Circuits Society (SSCS)",
+    period: "Aug 2025 — Present",
     description:
-      "Contributing to open-source security tools and machine learning frameworks. Focused on improving documentation, fixing edge-case bugs, and implementing new features.",
-    tags: ["Open Source", "Community", "Development"],
+      "Leading operations for technical events including 'Capture the Signal' and managing cross-team logistics for 75+ members. Previously managed the end-to-end recruitment process, successfully handling over 250 applications.",
+    tags: ["Leadership", "Event Management", "Operations"],
   },
 ];
 
