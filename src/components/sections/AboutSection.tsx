@@ -80,7 +80,7 @@ export default function AboutSection() {
             </motion.div>
 
             {/* GitHub Stats API */}
-            <motion.div variants={fadeUp} className="pt-6">
+            <motion.div variants={fadeUp} className="pt-6 flex flex-col md:flex-row gap-4 items-start">
               <a 
                 href="https://github.com/SibhiSS" 
                 target="_blank" 
@@ -89,7 +89,20 @@ export default function AboutSection() {
               >
                 <img
                   src="https://github-readme-streak-stats.herokuapp.com/?user=SibhiSS&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=a3a3a3&sideLabels=a3a3a3&dates=737373&stroke=ffffff20"
-                  alt="Sibhi's GitHub Stats"
+                  alt="Sibhi's GitHub Streak Stats"
+                  className="w-full max-w-[400px]"
+                />
+              </a>
+
+              <a 
+                href="https://git.io/awesome-stats-card" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-block opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-xl border border-white/[0.05] bg-white/[0.01] p-2"
+              >
+                <img
+                  src="https://awesome-github-stats.azurewebsites.net/user-stats/SibhiSS?cardType=level-alternate&theme=github-dark&fontFamily=Cormorant%20Garamond&preferLogin=true&Background=000000&borderRadius=10"
+                  alt="My Awesome Stats"
                   className="w-full max-w-[400px]"
                 />
               </a>
