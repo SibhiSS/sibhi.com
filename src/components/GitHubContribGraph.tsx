@@ -81,7 +81,7 @@ export default function GitHubContribGraph() {
       </div>
 
       {/* Graph scroll area */}
-      <div className="w-full overflow-x-auto scrollbar-hide rounded-lg border border-[#30363d] bg-[#0d1117] p-4">
+      <div className="w-full overflow-x-auto scrollbar-hide rounded-lg border border-[#30363d] bg-[#0d1117] p-4 flex justify-center">
         <svg
           width={LABEL_W + weeks.length * STEP}
           height={GRAPH_H}
