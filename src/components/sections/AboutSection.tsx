@@ -138,9 +138,10 @@ export default function AboutSection() {
 
               <div className="relative w-full overflow-x-auto scrollbar-hide rounded-lg border border-[#30363d] bg-[#0d1117] p-4">
                 <img
-                  src="https://github-contributions-api.deno.dev/SibhiSS.svg?no-total=true&no-legend=true"
+                  src="https://ghchart.rshah.org/34d399/SibhiSS"
                   alt="Sibhi's GitHub Contribution Graph"
-                  className="min-w-[850px] w-full object-contain invert-[1] hue-rotate-[180deg] brightness-[1.1] contrast-[1.1]"
+                  className="min-w-[850px] w-full object-contain"
+                  style={{ filter: "invert(1) hue-rotate(180deg) brightness(1.15) contrast(1.05)" }}
                 />
               </div>
             </div>
