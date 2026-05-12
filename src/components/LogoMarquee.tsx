@@ -30,11 +30,11 @@ export default function LogoMarquee() {
           <motion.div
             animate={{ x: ["0%", "-100%"] }}
             transition={{
-              duration: 25,
+              duration: 30,
               repeat: Infinity,
               ease: "linear",
             }}
-            className="flex items-center gap-16 md:gap-24 px-8"
+            className="flex items-center gap-24 md:gap-32 px-12"
           >
             {logos.map((logo, index) => (
               <div
@@ -63,11 +63,11 @@ export default function LogoMarquee() {
           <motion.div
             animate={{ x: ["0%", "-100%"] }}
             transition={{
-              duration: 25,
+              duration: 30,
               repeat: Infinity,
               ease: "linear",
             }}
-            className="flex items-center gap-16 md:gap-24 px-8"
+            className="flex items-center gap-24 md:gap-32 px-12"
           >
             {logos.map((logo, index) => (
               <div
