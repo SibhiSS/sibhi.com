@@ -125,41 +125,42 @@ export const skills: SkillCategory[] = [
 // ── Projects ──
 export const projects: Project[] = [
   {
+    id: "nova-cps",
+    title: "Nova CPS",
+    description:
+      "A college club website featuring a full recruitment drive system, handling everything from applications to interview scheduling and club management.",
+    tags: ["TypeScript", "Tailwind CSS"],
+    github: "https://github.com/SibhiSS/NOVA-CPS",
+    live: "https://novacps.vercel.app/",
+    featured: true,
+  },
+  {
+    id: "phishnet",
+    title: "PhishNet",
+    description:
+      "A phishing detection system focused on identifying malicious emails and websites using Machine Learning and NLP techniques, featuring Gmail integration and real-time analysis.",
+    tags: ["Python", "JavaScript", "Machine Learning", "NLP"],
+    github: "https://github.com/SibhiSS/PhishNet",
+    featured: true,
+  },
+  {
     id: "sentinel-siem",
     title: "Sentinel SIEM",
     description:
-      "A full-stack Security Information and Event Management system for real-time log analysis, threat detection, and incident response visualization.",
-    longDescription:
-      "Built with Node.js backend and modern frontend, Sentinel SIEM provides real-time log ingestion, automated threat classification, and interactive dashboards for security operations. Features Google OAuth integration and serverless deployment on Vercel.",
-    tags: ["Node.js", "Security", "Log Analysis", "Real-time", "OAuth"],
-    github: "https://github.com/sibhi-s",
+      "A browser-based log analysis and incident management system inspired by SIEM architecture. Enables client-side ingestion, parsing, rule-based detection, and visualization of log data.",
+    tags: ["HTML", "CSS", "JavaScript", "Security"],
+    github: "https://github.com/SibhiSS/Sentinel-SIEM",
+    live: "https://sentinel-siem.vercel.app",
     featured: true,
   },
   {
-    id: "quantum-sim",
-    title: "Quantum Circuit Simulator",
+    id: "cardioscope",
+    title: "CardioScope",
     description:
-      "A lightweight quantum circuit simulator implementing core quantum gates and algorithms for educational exploration of quantum computing principles.",
-    tags: ["Python", "Quantum Computing", "Linear Algebra", "Simulation"],
-    github: "https://github.com/sibhi-s",
+      "A Python-based project for analyzing and predicting cardiac data using machine learning and signal processing techniques, leveraging scientific libraries for model training and visualization.",
+    tags: ["Python", "Machine Learning", "Signal Processing"],
+    github: "https://github.com/SibhiSS/CardioScope",
     featured: true,
-  },
-  {
-    id: "ml-threat-classifier",
-    title: "ML Threat Classifier",
-    description:
-      "Machine learning pipeline for network intrusion detection, classifying traffic patterns using ensemble methods and deep learning architectures.",
-    tags: ["Machine Learning", "Cybersecurity", "Python", "TensorFlow"],
-    github: "https://github.com/sibhi-s",
-    featured: true,
-  },
-  {
-    id: "crypto-toolkit",
-    title: "Cryptographic Toolkit",
-    description:
-      "Implementation of classical and modern cryptographic algorithms with visual demonstrations of encryption, hashing, and key exchange protocols.",
-    tags: ["Cryptography", "Python", "Security", "Algorithms"],
-    github: "https://github.com/sibhi-s",
   },
 ];
 
