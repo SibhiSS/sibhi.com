@@ -6,7 +6,7 @@ import GitHubContribGraph from "@/components/GitHubContribGraph";
 
 export default function GitHubSection() {
   return (
-    <section className="relative py-16 md:py-22">
+    <section className="relative py-12 md:py-22">
       <div className="relative max-w-6xl mx-auto px-6 md:px-12">
         {/* Header — same style as other sections */}
         <motion.div

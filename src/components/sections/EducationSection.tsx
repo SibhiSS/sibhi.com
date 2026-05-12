@@ -7,7 +7,7 @@ import { fadeUp, staggerContainer } from "@/lib/animations";
 
 export default function EducationSection() {
   return (
-    <section id="education" className="relative py-16 md:py-22">
+    <section id="education" className="relative py-12 md:py-22">
       <div className="relative max-w-6xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
@@ -15,7 +15,7 @@ export default function EducationSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="mb-16 md:mb-20 text-right md:text-left"
+          className="mb-16 md:mb-20 text-left"
         >
           <span className="text-[10px] tracking-[0.35em] uppercase text-white/25 font-light">
             Academics

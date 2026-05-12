@@ -6,7 +6,7 @@ import { fadeUp } from "@/lib/animations";
 
 export default function ResumeSection() {
   return (
-    <section id="resume" className="relative py-16 md:py-22">
+    <section id="resume" className="relative py-12 md:py-22">
       <div className="relative max-w-6xl mx-auto px-6 md:px-12">
         <motion.div
           variants={fadeUp}

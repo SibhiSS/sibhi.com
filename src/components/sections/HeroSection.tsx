@@ -10,7 +10,7 @@ function AnimatedName() {
 
   return (
     <motion.h1
-      className="hero-name flex items-center justify-start flex-wrap"
+      className="hero-name flex items-center justify-center md:justify-start flex-wrap text-center md:text-left"
       aria-label={hero.name}
     >
       {letters.map((letter, i) => (
@@ -33,8 +33,6 @@ function AnimatedName() {
   );
 }
 
-
-
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -50,20 +48,13 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 md:py-0"
     >
       {/* Atmospheric Background */}
       <div className="absolute inset-0">
-        {/* Base Gradient Layer */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#000000] via-[#080808] to-[#000000]" />
-
-        {/* Lighting Accents */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.015)_0%,transparent_70%)] pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(ellipse,rgba(120,130,140,0.06)_0%,transparent_60%)] blur-3xl pointer-events-none" />
-
-
-
-        {/* Subtle Grid */}
         <div
           className="absolute inset-0 opacity-[0.02]"
           style={{
@@ -77,48 +68,62 @@ export default function HeroSection() {
       {/* Content */}
       <motion.div
         style={{ opacity, y, scale }}
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 items-center h-screen pt-20 md:pt-0"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:grid md:grid-cols-2 items-center justify-center gap-12"
       >
-        {/* Left Side — Typography */}
-        <div className="flex flex-col items-start text-left z-20">
-          {/* Greeting */}
+        {/* Profile Image — Top on Mobile, Right on Desktop */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="order-1 md:order-2 w-full max-w-[320px] md:max-w-none aspect-square md:aspect-auto md:h-[70vh] flex items-center justify-center pointer-events-none"
+        >
+          <div className="relative w-full h-full rounded-[2.5rem] md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#000000] via-[#000000]/50 to-transparent z-10" />
+            <Image
+              src="/profile-main.jpg"
+              alt="Sibhi S"
+              fill
+              className="object-cover object-center grayscale opacity-90"
+              priority
+            />
+          </div>
+        </motion.div>
+
+        {/* Typography — Bottom on Mobile, Left on Desktop */}
+        <div className="order-2 md:order-1 flex flex-col items-center md:items-start text-center md:text-left z-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-white/60 text-base md:text-lg font-light tracking-wide mb-2 pl-2"
+            className="text-white/60 text-base md:text-lg font-light tracking-wide mb-2"
           >
             Hi, I am
           </motion.div>
 
-          {/* Name */}
           <AnimatedName />
 
-          {/* Subtitles & Status */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-6 pl-2"
+            className="mt-6"
           >
             <span className="block text-[10px] md:text-xs tracking-[0.35em] uppercase text-white/30 font-light mb-3">
               Computer Science Engineering · VIT Chennai
             </span>
-            <div className="flex items-center gap-2 text-xs md:text-sm text-white/40 font-light tracking-wide">
+            <div className="flex items-center justify-center md:justify-start gap-2 text-xs md:text-sm text-white/40 font-light tracking-wide">
               <div className="w-1.5 h-1.5 rounded-full bg-white/20"></div>
-              <span>Currently exploring ML & Quantum Cryptography</span>
+              <span>Exploring AI & Security</span>
             </div>
           </motion.div>
 
-          {/* Decorative Line */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1.4, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="w-24 h-[1px] bg-gradient-to-r from-white/20 to-transparent my-8 origin-left"
+            className="w-24 h-[1px] bg-gradient-to-r from-white/20 to-transparent my-8 origin-center md:origin-left"
           />
 
-          {/* Tagline */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -128,7 +133,6 @@ export default function HeroSection() {
             {hero.tagline}
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -162,27 +166,6 @@ export default function HeroSection() {
             </a>
           </motion.div>
         </div>
-
-        {/* Right Side — Image */}
-        <motion.div
-          initial={{ opacity: 0, filter: "blur(10px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute md:relative right-0 bottom-0 md:bottom-auto w-full h-[60vh] md:h-[80vh] opacity-30 md:opacity-100 pointer-events-none flex items-end justify-end md:pl-10 pb-10"
-        >
-          <div className="relative w-full md:w-[90%] h-full rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
-            {/* Fading gradient at the bottom inside the rounded container */}
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#000000] via-[#000000]/50 to-transparent z-10" />
-            
-            <Image
-              src="/profile-main.jpg"
-              alt="Sibhi S"
-              fill
-              className="object-cover object-center grayscale opacity-90"
-              priority
-            />
-          </div>
-        </motion.div>
       </motion.div>
 
       {/* Scroll Indicator */}

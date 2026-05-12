@@ -51,7 +51,7 @@ function SkillCard({
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="relative py-16 md:py-22">
+    <section id="skills" className="relative py-12 md:py-22">
       <div className="relative max-w-6xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div

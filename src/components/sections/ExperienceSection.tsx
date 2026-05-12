@@ -10,7 +10,7 @@ export default function ExperienceSection() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   return (
-    <section id="experience" className="relative py-16 md:py-22">
+    <section id="experience" className="relative py-12 md:py-22">
       <div className="relative max-w-6xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div
