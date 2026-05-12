@@ -39,11 +39,11 @@ export default function LogoMarquee() {
             <motion.div
               animate={{ x: ["0%", "-100%"] }}
               transition={{
-                duration: 35,
+                duration: 40,
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="flex items-center gap-16 md:gap-24 px-8"
+              className="flex items-center gap-24 md:gap-36 px-12"
             >
               {logos.map((logo, index) => (
                 <div
@@ -53,7 +53,7 @@ export default function LogoMarquee() {
                     width: "var(--logo-size)",
                     height: "var(--logo-size)",
                     // @ts-ignore
-                    "--logo-size": "clamp(36px, 6vw, 48px)",
+                    "--logo-size": "clamp(48px, 8vw, 72px)",
                   }}
                 >
                   <logo.Icon className="w-full h-full text-white" />
@@ -65,11 +65,11 @@ export default function LogoMarquee() {
             <motion.div
               animate={{ x: ["0%", "-100%"] }}
               transition={{
-                duration: 35,
+                duration: 40,
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="flex items-center gap-16 md:gap-24 px-8"
+              className="flex items-center gap-24 md:gap-36 px-12"
             >
               {logos.map((logo, index) => (
                 <div
@@ -79,7 +79,7 @@ export default function LogoMarquee() {
                     width: "var(--logo-size)",
                     height: "var(--logo-size)",
                     // @ts-ignore
-                    "--logo-size": "clamp(36px, 6vw, 48px)",
+                    "--logo-size": "clamp(48px, 8vw, 72px)",
                   }}
                 >
                   <logo.Icon className="w-full h-full text-white" />
