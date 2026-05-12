@@ -131,36 +131,17 @@ export default function AboutSection() {
             </div>
 
             {/* The "GitHub Frame" */}
-            <div className="bg-[#0d1117] rounded-xl border border-white/5 p-6 md:p-8">
-              <div className="flex justify-between items-center mb-6 px-1">
-                <span className="text-sm md:text-base font-light text-white/90">200+ contributions in the last year</span>
-                <div className="hidden md:flex items-center gap-1 text-[11px] text-white/30 font-light cursor-default">
-                  Contribution settings
-                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 16 16"><path d="M4.427 7.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 7H4.604a.25.25 0 00-.177.427z"/></svg>
-                </div>
+            <div className="bg-[#0d1117] rounded-xl border border-[#30363d] p-6 md:p-8">
+              <div className="mb-6 px-1">
+                <span className="text-sm md:text-base font-normal text-[#e6edf3]">199 contributions in the last year</span>
               </div>
 
-              <div className="relative w-full overflow-x-auto pb-4 scrollbar-hide">
+              <div className="relative w-full overflow-x-auto scrollbar-hide rounded-lg border border-[#30363d] bg-[#0d1117] p-4">
                 <img
-                  src="https://github-contributions-api.deno.dev/SibhiSS.svg?no-total=true"
+                  src="https://github-contributions-api.deno.dev/SibhiSS.svg?no-total=true&no-legend=true"
                   alt="Sibhi's GitHub Contribution Graph"
                   className="min-w-[850px] w-full object-contain invert-[1] hue-rotate-[180deg] brightness-[1.1] contrast-[1.1]"
                 />
-              </div>
-
-              <div className="flex justify-between items-center mt-2 px-1 text-[11px] text-white/20 font-light">
-                <span>Learn how we count contributions</span>
-                <div className="flex items-center gap-1.5">
-                  <span>Less</span>
-                  <div className="flex gap-[3px]">
-                    <div className="w-[10px] h-[10px] bg-[#161b22] rounded-[2px]"></div>
-                    <div className="w-[10px] h-[10px] bg-[#0e4429] rounded-[2px]"></div>
-                    <div className="w-[10px] h-[10px] bg-[#006d32] rounded-[2px]"></div>
-                    <div className="w-[10px] h-[10px] bg-[#26a641] rounded-[2px]"></div>
-                    <div className="w-[10px] h-[10px] bg-[#39d353] rounded-[2px]"></div>
-                  </div>
-                  <span>More</span>
-                </div>
               </div>
             </div>
           </div>
