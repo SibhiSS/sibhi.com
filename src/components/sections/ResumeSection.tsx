@@ -36,7 +36,7 @@ export default function ResumeSection() {
 
               <motion.a
                 href={resumeUrl}
-                download
+                download="sibhi_resume.pdf"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
