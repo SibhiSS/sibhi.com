@@ -204,8 +204,7 @@ export default function ProjectsSection() {
               Selected Work
             </span>
             <h2 className="mt-4 text-3xl md:text-4xl font-light text-white/90 tracking-tight">
-              Projects
-              <span className="text-white/40 ml-3">& Builds</span>
+              Featured <span className="text-white/40">Projects</span>
             </h2>
           </motion.div>
 

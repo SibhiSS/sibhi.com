@@ -78,6 +78,23 @@ export default function AboutSection() {
                 </div>
               ))}
             </motion.div>
+
+            {/* GitHub Stats API */}
+            <motion.div variants={fadeUp} className="pt-6">
+              <a 
+                href="https://github.com/SibhiSS" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-block opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-xl border border-white/[0.05] bg-white/[0.01] p-2"
+              >
+                {/* We use standard img because next/image requires domain config for external domains */}
+                <img
+                  src="https://github-readme-stats.vercel.app/api?username=SibhiSS&show_icons=true&theme=transparent&hide_border=true&title_color=ffffff&text_color=a3a3a3&icon_color=34d399"
+                  alt="Sibhi's GitHub Stats"
+                  className="w-full max-w-[400px]"
+                />
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </div>

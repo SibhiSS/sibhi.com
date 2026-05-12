@@ -108,6 +108,16 @@ export const skills: SkillCategory[] = [
 // ── Projects ──
 export const projects: Project[] = [
   {
+    id: "sentinel-siem",
+    title: "Sentinel SIEM",
+    description:
+      "A full-stack Security Information and Event Management (SIEM) application with real-time log analysis, threat detection, and interactive security dashboards.",
+    tags: ["Node.js", "React", "Cybersecurity", "Google OAuth"],
+    github: "https://github.com/SibhiSS/Sentinel-SIEM",
+    live: "https://project.sibhi.com/",
+    featured: true,
+  },
+  {
     id: "nova-cps",
     title: "Nova CPS",
     description:

@@ -85,7 +85,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-white/60 text-base md:text-lg font-light tracking-wide mb-2 pl-2"
           >
             Hi, I am
@@ -94,16 +94,20 @@ export default function HeroSection() {
           {/* Name */}
           <AnimatedName />
 
-          {/* Overline */}
+          {/* Subtitles & Status */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 pl-2"
           >
-            <span className="inline-block text-[10px] md:text-xs tracking-[0.35em] uppercase text-white/30 font-light">
+            <span className="block text-[10px] md:text-xs tracking-[0.35em] uppercase text-white/30 font-light mb-3">
               Computer Science Engineering · VIT Chennai
             </span>
+            <div className="flex items-center gap-2 text-xs md:text-sm text-white/40 font-light tracking-wide">
+              <div className="w-1.5 h-1.5 rounded-full bg-white/20"></div>
+              <span>Currently exploring ML & Quantum Cryptography</span>
+            </div>
           </motion.div>
 
           {/* Decorative Line */}
