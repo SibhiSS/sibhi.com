@@ -130,7 +130,7 @@ export default function AboutSection() {
               <img
                 src="https://ghchart.rshah.org/34d399/SibhiSS"
                 alt="Sibhi's GitHub Contribution Graph"
-                className="min-w-[800px] w-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                className="min-w-[800px] w-full object-contain invert-[1] hue-rotate-[180deg] opacity-70 group-hover:opacity-100 transition-opacity duration-500"
               />
             </div>
           </div>
