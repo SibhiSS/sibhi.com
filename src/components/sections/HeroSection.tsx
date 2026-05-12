@@ -150,7 +150,7 @@ export default function HeroSection() {
       {/* Atmospheric Background */}
       <div className="absolute inset-0">
         {/* Base Gradient Layer */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-[#080808] to-[#0a0a0a]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000000] via-[#080808] to-[#000000]" />
 
         {/* Lighting Accents */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.015)_0%,transparent_70%)] pointer-events-none" />
@@ -264,7 +264,7 @@ export default function HeroSection() {
         >
           <div className="relative w-full md:w-[90%] h-full rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
             {/* Fading gradient at the bottom inside the rounded container */}
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#030303] via-[#030303]/50 to-transparent z-10" />
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#000000] via-[#000000]/50 to-transparent z-10" />
             
             <Image
               src="/profile-main.jpg"

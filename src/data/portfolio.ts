@@ -22,6 +22,19 @@ export interface Experience {
   period: string;
   description: string;
   tags?: string[];
+  tasks?: string[]; // Detailed list of what was done
+  postLink?: string; // Link to related LinkedIn post
+  images?: string[]; // Optional images to display
+  imageLayout?: "badge" | "photo"; // Style of the images
+  logo?: string; // Small organization logo
+}
+
+export interface Education {
+  id: string;
+  degree: string;
+  institution: string;
+  period: string;
+  logo?: string;
 }
 
 export interface ResearchEntry {
@@ -173,6 +186,15 @@ export const experiences: Experience[] = [
     description:
       "Selected as a Contributor and Ambassador for GSSoC, actively engaging in open-source software development, global collaboration, and community building.",
     tags: ["Open Source", "Community"],
+    tasks: [
+      "Mentored beginners in open-source contribution and git workflows.",
+      "Contributed high-quality code to various open-source repositories.",
+      "Represented the program and promoted open-source awareness.",
+    ],
+    postLink: "https://www.linkedin.com/posts/sibhis_selected-for-girlscript-summer-of-code-2026-activity-7456039149490593792-Tn2u",
+    images: ["/gssoc-1.jpg", "/gssoc-2.jpg", "/gssoc-3.jpg"],
+    imageLayout: "badge",
+    logo: "/gssoc-logo-new.png",
   },
   {
     id: "exp-2",
@@ -182,6 +204,12 @@ export const experiences: Experience[] = [
     description:
       "ML Research Intern focusing on advanced Machine Learning applications and hardware-accelerated processing using CUDA.",
     tags: ["Machine Learning", "CUDA", "Research"],
+    tasks: [
+      "Researched ML models for cyber-physical systems.",
+      "Optimized data processing pipelines utilizing CUDA for GPU acceleration.",
+      "Collaborated with professors and researchers on publication drafts.",
+    ],
+    logo: "/vit-logo-new.jpg",
   },
   {
     id: "exp-3",
@@ -191,6 +219,33 @@ export const experiences: Experience[] = [
     description:
       "Leading operations for technical events including 'Capture the Signal' and managing cross-team logistics for 75+ members. Previously managed the end-to-end recruitment process, successfully handling over 250 applications.",
     tags: ["Leadership", "Event Management", "Operations"],
+    tasks: [
+      "Spearheaded the 'Capture the Signal' technical event logistics.",
+      "Managed end-to-end recruitment of 250+ candidates including screening and interviews.",
+      "Coordinated cross-functional teams to ensure smooth chapter operations.",
+    ],
+    postLink: "https://www.linkedin.com/posts/sibhis_ieee-teamwork-vitchennai-activity-7448031511804526592-ad1K",
+    images: ["/sscs-1.jpg", "/sscs-2.jpg"],
+    imageLayout: "photo",
+    logo: "/ieee-sscs-logo.jpg",
+  },
+];
+
+// ── Education ──
+export const education: Education[] = [
+  {
+    id: "edu-1",
+    degree: "B.Tech CSE (Specialisation in Cyber Physical Systems)",
+    institution: "VIT Chennai",
+    period: "2024 — 2028",
+    logo: "/vit-logo-new.jpg",
+  },
+  {
+    id: "edu-2",
+    degree: "Grade 1 to 12",
+    institution: "The Ashok Leyland School, Hosur",
+    period: "Completed 2024",
+    logo: "/tals-logo.jpg",
   },
 ];
 

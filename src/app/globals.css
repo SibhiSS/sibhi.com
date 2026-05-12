@@ -8,7 +8,7 @@
 /* ── CSS Custom Properties ── */
 :root {
   /* Grayscale Palette */
-  --bg-primary: #030303;
+  --bg-primary: #000000;
   --bg-secondary: #080808;
   --bg-elevated: #0c0c0c;
   --bg-card: rgba(255, 255, 255, 0.01);

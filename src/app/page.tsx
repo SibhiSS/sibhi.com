@@ -8,8 +8,8 @@ import AboutSection from "@/components/sections/AboutSection";
 import SkillsSection from "@/components/sections/SkillsSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
+import EducationSection from "@/components/sections/EducationSection";
 import ResearchSection from "@/components/sections/ResearchSection";
-import ClubsSection from "@/components/sections/ClubsSection";
 import ResumeSection from "@/components/sections/ResumeSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/Footer";
@@ -43,10 +43,10 @@ export default function HomePage() {
         <ExperienceSection />
         <div className="section-divider" />
 
-        <ResearchSection />
+        <EducationSection />
         <div className="section-divider" />
 
-        <ClubsSection />
+        <ResearchSection />
         <div className="section-divider" />
 
         <ResumeSection />
