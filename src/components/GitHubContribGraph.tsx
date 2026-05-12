@@ -25,10 +25,10 @@ const LEVEL_COLORS: Record<string, string> = {
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-const CELL = 13;
+const CELL = 14;
 const GAP = 3;
 const STEP = CELL + GAP;
-const LABEL_W = 36;
+const LABEL_W = 49;
 const MONTH_H = 20;
 const ROWS = 7;
 const GRAPH_H = MONTH_H + ROWS * STEP;         // ~118px
