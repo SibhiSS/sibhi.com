@@ -1,26 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { 
-  SiPython, 
-  SiCplusplus, 
-  SiKalilinux, 
-  SiDocker, 
-  SiCloudflare, 
-  SiMysql, 
-  SiBurpsuite, 
-  SiPytorch 
-} from "react-icons/si";
 
 const logos = [
-  { name: "Python", Icon: SiPython },
-  { name: "C++", Icon: SiCplusplus },
-  { name: "Kali", Icon: SiKalilinux },
-  { name: "Docker", Icon: SiDocker },
-  { name: "Cloudflare", Icon: SiCloudflare },
-  { name: "MySQL", Icon: SiMysql },
-  { name: "Burp Suite", Icon: SiBurpsuite },
-  { name: "PyTorch", Icon: SiPytorch },
+  { name: "Python", src: "/python-logo.png" },
+  { name: "C++", src: "/cpp-logo.png" },
+  { name: "Kali", src: "/kali-logo.png", scale: 1.1 },
+  { name: "Docker", src: "/docker-logo.png", scale: 1.1 },
+  { name: "Cloudflare", src: "/cloudflare-logo.png", scale: 1.1 },
+  { name: "MySQL", src: "/mysql-logo.png", scale: 1.1 },
+  { name: "Burp Suite", src: "/burpsuite-logo.png", scale: 1.1 },
+  { name: "PyTorch", src: "/pytorch-logo.jpg", scale: 1.1 },
 ];
 
 export default function LogoMarquee() {
@@ -39,7 +30,7 @@ export default function LogoMarquee() {
             <motion.div
               animate={{ x: ["0%", "-100%"] }}
               transition={{
-                duration: 35, // slow down a bit because it's wider now
+                duration: 30,
                 repeat: Infinity,
                 ease: "linear",
               }}
@@ -48,20 +39,22 @@ export default function LogoMarquee() {
               {logos.map((logo, index) => (
                 <div
                   key={`${logo.name}-${index}`}
-                  className="flex items-center gap-4 md:gap-6 opacity-70 hover:opacity-100 transition-all duration-500"
+                  className="relative invert grayscale brightness-200 opacity-100 transition-all duration-500 mix-blend-screen"
+                  style={{
+                    width: "var(--logo-size)",
+                    height: "var(--logo-size)",
+                    transform: `scale(${logo.scale || 1})`,
+                    // @ts-ignore
+                    "--logo-size": "clamp(80px, 15vw, 110px)",
+                  }}
                 >
-                  <logo.Icon 
-                    className="text-white shrink-0" 
-                    style={{
-                      width: "var(--logo-size)",
-                      height: "var(--logo-size)",
-                      // @ts-ignore
-                      "--logo-size": "clamp(48px, 8vw, 64px)",
-                    }}
+                  <Image
+                    src={logo.src}
+                    alt={logo.name}
+                    fill
+                    unoptimized
+                    className="object-contain"
                   />
-                  <span className="text-2xl md:text-3xl font-light tracking-tight text-white whitespace-nowrap">
-                    {logo.name}
-                  </span>
                 </div>
               ))}
             </motion.div>
@@ -70,7 +63,7 @@ export default function LogoMarquee() {
             <motion.div
               animate={{ x: ["0%", "-100%"] }}
               transition={{
-                duration: 35,
+                duration: 30,
                 repeat: Infinity,
                 ease: "linear",
               }}
@@ -79,26 +72,28 @@ export default function LogoMarquee() {
               {logos.map((logo, index) => (
                 <div
                   key={`${logo.name}-dup-${index}`}
-                  className="flex items-center gap-4 md:gap-6 opacity-70 hover:opacity-100 transition-all duration-500"
+                  className="relative invert grayscale brightness-200 opacity-100 transition-all duration-500 mix-blend-screen"
+                  style={{
+                    width: "var(--logo-size)",
+                    height: "var(--logo-size)",
+                    transform: `scale(${logo.scale || 1})`,
+                    // @ts-ignore
+                    "--logo-size": "clamp(80px, 15vw, 110px)",
+                  }}
                 >
-                  <logo.Icon 
-                    className="text-white shrink-0" 
-                    style={{
-                      width: "var(--logo-size)",
-                      height: "var(--logo-size)",
-                      // @ts-ignore
-                      "--logo-size": "clamp(48px, 8vw, 64px)",
-                    }}
+                  <Image
+                    src={logo.src}
+                    alt={logo.name}
+                    fill
+                    unoptimized
+                    className="object-contain"
                   />
-                  <span className="text-2xl md:text-3xl font-light tracking-tight text-white whitespace-nowrap">
-                    {logo.name}
-                  </span>
                 </div>
               ))}
             </motion.div>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
