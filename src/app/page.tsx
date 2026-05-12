@@ -12,6 +12,7 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
 import EducationSection from "@/components/sections/EducationSection";
 import ResearchSection from "@/components/sections/ResearchSection";
+import GitHubSection from "@/components/sections/GitHubSection";
 import ResumeSection from "@/components/sections/ResumeSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/Footer";
@@ -37,6 +38,7 @@ export default function HomePage() {
         <ExperienceSection />
         <EducationSection />
         <ResearchSection />
+        <GitHubSection />
         <ResumeSection />
         <ContactSection />
       </main>

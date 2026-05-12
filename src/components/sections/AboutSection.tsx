@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { about } from "@/data/portfolio";
 import { fadeUp, staggerContainer } from "@/lib/animations";
-import GitHubContribGraph from "@/components/GitHubContribGraph";
 
 export default function AboutSection() {
   return (
@@ -81,42 +80,6 @@ export default function AboutSection() {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* GitHub Stats API - Full Width */}
-        <motion.div 
-          variants={fadeUp} 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="mt-16 md:mt-24 space-y-6"
-        >
-          {/* Top Section: Streak Overview */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <a 
-              href="https://github.com/SibhiSS" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-2xl border border-white/[0.05] bg-white/[0.01] p-4 md:p-6"
-            >
-              <img
-                src="https://github-readme-streak-stats.herokuapp.com/?user=SibhiSS&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=a3a3a3&sideLabels=a3a3a3&dates=737373&stroke=ffffff20&v=4"
-                alt="Sibhi's GitHub Streak Stats"
-                className="w-full object-contain"
-              />
-            </a>
-            
-            <div className="flex flex-col justify-center p-8 rounded-2xl border border-white/[0.05] bg-white/[0.01]">
-              <span className="text-[10px] tracking-[0.3em] uppercase text-white/20 mb-2">GitHub Activity</span>
-              <h3 className="text-xl font-light text-white/80 leading-relaxed">
-                Consistency is <span className="text-emerald-400/80 italic">everything</span>. 
-                Tracking daily progress across cybersecurity and development repos.
-              </h3>
-            </div>
-          </div>
-
-          {/* Bottom Section: Contribution Graph (Exact GitHub UI) */}
-          <GitHubContribGraph />
-        </motion.div>
       </div>
     </section>
   );

@@ -56,10 +56,10 @@ export default function GitHubContribGraph() {
   if (!data) {
     return (
       <div
-        className="bg-[#0d1117] rounded-xl border border-[#30363d] p-6 md:p-8 flex items-center justify-center"
+        className="rounded-2xl border border-white/[0.05] bg-white/[0.01] p-6 md:p-8 flex items-center justify-center"
         style={{ minHeight: SKELETON_H }}
       >
-        <div className="text-[#8b949e] text-sm animate-pulse">Loading contributions…</div>
+        <div className="text-white/30 text-sm animate-pulse">Loading contributions…</div>
       </div>
     );
   }
@@ -80,16 +80,16 @@ export default function GitHubContribGraph() {
   });
 
   return (
-    <div className="bg-[#0d1117] rounded-xl border border-[#30363d] p-6 md:p-8">
+    <div className="rounded-2xl border border-white/[0.05] bg-white/[0.01] p-6 md:p-8">
       {/* Header */}
       <div className="mb-4">
-        <span className="text-sm font-normal text-[#e6edf3]">
+        <span className="text-sm font-light text-white/60">
           {data.totalContributions} contributions in the last year
         </span>
       </div>
 
       {/* Graph scroll area */}
-      <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide rounded-lg border border-[#30363d] bg-[#0d1117] p-4">
+      <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide rounded-xl border border-white/[0.04] bg-black/20 p-4">
         <svg
           width={LABEL_W + weeks.length * STEP}
           height={GRAPH_H}
@@ -101,7 +101,7 @@ export default function GitHubContribGraph() {
               key={`m-${i}`}
               x={LABEL_W + m.col * STEP}
               y={12}
-              fill="#8b949e"
+              fill="rgba(255,255,255,0.25)"
               fontSize={11}
               fontFamily="inherit"
             >
@@ -115,7 +115,7 @@ export default function GitHubContribGraph() {
               key={`d-${row}`}
               x={0}
               y={MONTH_H + row * STEP + CELL - 1}
-              fill="#8b949e"
+              fill="rgba(255,255,255,0.25)"
               fontSize={11}
               fontFamily="inherit"
             >
