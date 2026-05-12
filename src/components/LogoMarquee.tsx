@@ -35,57 +35,67 @@ export default function LogoMarquee() {
           }}
         >
           <div className="flex w-max">
-          {/* First set of logos */}
-          <motion.div
-            animate={{ x: ["0%", "-100%"] }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="flex items-center gap-24 md:gap-32 px-12"
-          >
-            {logos.map((logo, index) => (
-              <div
-                key={`${logo.name}-${index}`}
-                className="flex items-center justify-center opacity-70 transition-all duration-500"
-                style={{
-                  width: "var(--logo-size)",
-                  height: "var(--logo-size)",
-                  // @ts-ignore
-                  "--logo-size": "clamp(60px, 12vw, 90px)",
-                }}
-              >
-                <logo.Icon className="w-full h-full text-white" />
-              </div>
-            ))}
-          </motion.div>
+            {/* First set of logos */}
+            <motion.div
+              animate={{ x: ["0%", "-100%"] }}
+              transition={{
+                duration: 35, // slow down a bit because it's wider now
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="flex items-center gap-24 md:gap-32 px-12"
+            >
+              {logos.map((logo, index) => (
+                <div
+                  key={`${logo.name}-${index}`}
+                  className="flex items-center gap-4 md:gap-6 opacity-70 hover:opacity-100 transition-all duration-500"
+                >
+                  <logo.Icon 
+                    className="text-white shrink-0" 
+                    style={{
+                      width: "var(--logo-size)",
+                      height: "var(--logo-size)",
+                      // @ts-ignore
+                      "--logo-size": "clamp(48px, 8vw, 64px)",
+                    }}
+                  />
+                  <span className="text-2xl md:text-3xl font-light tracking-tight text-white whitespace-nowrap">
+                    {logo.name}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
 
-          {/* Duplicate set for seamless loop */}
-          <motion.div
-            animate={{ x: ["0%", "-100%"] }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="flex items-center gap-24 md:gap-32 px-12"
-          >
-            {logos.map((logo, index) => (
-              <div
-                key={`${logo.name}-dup-${index}`}
-                className="flex items-center justify-center opacity-70 transition-all duration-500"
-                style={{
-                  width: "var(--logo-size)",
-                  height: "var(--logo-size)",
-                  // @ts-ignore
-                  "--logo-size": "clamp(60px, 12vw, 90px)",
-                }}
-              >
-                <logo.Icon className="w-full h-full text-white" />
-              </div>
-            ))}
-          </motion.div>
+            {/* Duplicate set for seamless loop */}
+            <motion.div
+              animate={{ x: ["0%", "-100%"] }}
+              transition={{
+                duration: 35,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="flex items-center gap-24 md:gap-32 px-12"
+            >
+              {logos.map((logo, index) => (
+                <div
+                  key={`${logo.name}-dup-${index}`}
+                  className="flex items-center gap-4 md:gap-6 opacity-70 hover:opacity-100 transition-all duration-500"
+                >
+                  <logo.Icon 
+                    className="text-white shrink-0" 
+                    style={{
+                      width: "var(--logo-size)",
+                      height: "var(--logo-size)",
+                      // @ts-ignore
+                      "--logo-size": "clamp(48px, 8vw, 64px)",
+                    }}
+                  />
+                  <span className="text-2xl md:text-3xl font-light tracking-tight text-white whitespace-nowrap">
+                    {logo.name}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
         </div>
       </div>
     </div>
