@@ -43,7 +43,7 @@ export default function LogoMarquee() {
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="flex items-center gap-24 md:gap-36 px-12"
+              className="flex items-center gap-24 md:gap-36 pr-24 md:pr-36"
             >
               {logos.map((logo, index) => (
                 <div
@@ -69,7 +69,7 @@ export default function LogoMarquee() {
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="flex items-center gap-24 md:gap-36 px-12"
+              className="flex items-center gap-24 md:gap-36 pr-24 md:pr-36"
             >
               {logos.map((logo, index) => (
                 <div
