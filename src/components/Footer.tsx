@@ -7,7 +7,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative py-12 md:py-16 border-t border-white/[0.03]">
+    <footer className="relative py-6 md:py-8 border-t border-white/[0.03]">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <motion.div
           variants={fadeUp}
