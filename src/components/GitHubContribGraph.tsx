@@ -39,7 +39,7 @@ export default function GitHubContribGraph() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch("https://github-contributions-api.deno.dev/SibhiSS.json")
+    fetch(`https://github-contributions-api.deno.dev/SibhiSS.json?_=${Date.now()}`)
       .then((r) => r.json())
       .then((j) => setData(j))
       .catch(() => {});
@@ -89,7 +89,7 @@ export default function GitHubContribGraph() {
       </div>
 
       {/* Graph scroll area */}
-      <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide rounded-lg border border-[#30363d] bg-[#0d1117] p-4 flex justify-center">
+      <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide rounded-lg border border-[#30363d] bg-[#0d1117] p-4">
         <svg
           width={LABEL_W + weeks.length * STEP}
           height={GRAPH_H}
