@@ -25,7 +25,7 @@ const LEVEL_COLORS: Record<string, string> = {
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-const CELL = 12;
+const CELL = 13;
 const GAP = 3;
 const STEP = CELL + GAP;
 const LABEL_W = 36;
