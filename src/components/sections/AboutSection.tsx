@@ -109,7 +109,7 @@ export default function AboutSection() {
             className="flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-2xl border border-white/[0.05] bg-white/[0.01] p-4 md:p-6"
           >
             <img
-              src="https://awesome-github-stats.azurewebsites.net/user-stats/SibhiSS?cardType=level-alternate&theme=github-dark&fontFamily=Cormorant%20Garamond&preferLogin=true&Background=000000&borderRadius=10"
+              src="https://awesome-github-stats.azurewebsites.net/user-stats/SibhiSS?cardType=level-alternate&theme=github-dark&fontFamily=Inter%20Tight&preferLogin=true&Background=000000&borderRadius=10"
               alt="My Awesome Stats"
               className="w-full object-contain"
             />
