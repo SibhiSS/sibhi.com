@@ -88,7 +88,7 @@ export default function AboutSection() {
                 className="inline-block opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-xl border border-white/[0.05] bg-white/[0.01] p-2"
               >
                 <img
-                  src="https://github-readme-streak-stats.herokuapp.com/?user=SibhiSS&theme=transparent&hide_border=true&title_color=ffffff&text_color=a3a3a3&icon_color=34d399&ring=34d399&fire=34d399"
+                  src="https://github-readme-streak-stats.herokuapp.com/?user=SibhiSS&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=a3a3a3&sideLabels=a3a3a3&dates=737373&stroke=ffffff20"
                   alt="Sibhi's GitHub Stats"
                   className="w-full max-w-[400px]"
                 />
