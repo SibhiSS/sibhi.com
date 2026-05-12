@@ -27,8 +27,7 @@ export default function ResearchSection() {
             Explorations
           </span>
           <h2 className="mt-4 text-3xl md:text-4xl font-light text-white/90 tracking-tight">
-            Research
-            <span className="text-white/40 ml-3">& Inquiry</span>
+            Research <span className="text-white/40">& Inquiry</span>
           </h2>
           <p className="mt-4 text-sm text-white/25 font-light max-w-xl leading-relaxed">
             Active areas of intellectual exploration and technical inquiry at the
