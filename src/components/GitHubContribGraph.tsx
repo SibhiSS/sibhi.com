@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface ContributionDay {
   color: string;
@@ -36,6 +36,7 @@ const SKELETON_H = 32 + 16 + 16 + GRAPH_H + 32; // header + gaps + inner padding
 
 export default function GitHubContribGraph() {
   const [data, setData] = useState<ContributionData | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("https://github-contributions-api.deno.dev/SibhiSS.json")
@@ -43,6 +44,13 @@ export default function GitHubContribGraph() {
       .then((j) => setData(j))
       .catch(() => {});
   }, []);
+
+  // Auto-scroll to the right so today's date is visible
+  useEffect(() => {
+    if (data && scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+    }
+  }, [data]);
 
   // Reserve exact space while loading to prevent layout shift
   if (!data) {
@@ -81,7 +89,7 @@ export default function GitHubContribGraph() {
       </div>
 
       {/* Graph scroll area */}
-      <div className="w-full overflow-x-auto scrollbar-hide rounded-lg border border-[#30363d] bg-[#0d1117] p-4 flex justify-center">
+      <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide rounded-lg border border-[#30363d] bg-[#0d1117] p-4 flex justify-center">
         <svg
           width={LABEL_W + weeks.length * STEP}
           height={GRAPH_H}
