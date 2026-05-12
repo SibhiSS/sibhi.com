@@ -65,8 +65,7 @@ export default function SkillsSection() {
             Capabilities
           </span>
           <h2 className="mt-4 text-3xl md:text-4xl font-light text-white/90 tracking-tight">
-            Technical
-            <span className="text-white/40 ml-3">Expertise</span>
+            Technical <span className="text-white/40">Expertise</span>
           </h2>
         </motion.div>
 

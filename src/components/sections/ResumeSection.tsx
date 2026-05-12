@@ -26,7 +26,7 @@ export default function ResumeSection() {
               </span>
 
               <h2 className="mt-4 text-3xl md:text-4xl font-light text-white/90 tracking-tight">
-                Résumé
+                Curriculum <span className="text-white/40">Vitae</span>
               </h2>
 
               <p className="mt-4 text-sm text-white/30 font-light max-w-md mx-auto leading-relaxed">

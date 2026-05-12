@@ -24,8 +24,7 @@ export default function ExperienceSection() {
             Journey
           </span>
           <h2 className="mt-4 text-3xl md:text-4xl font-light text-white/90 tracking-tight">
-            Experience
-            <span className="text-white/40 ml-3">& Growth</span>
+            Work <span className="text-white/40">Experience</span>
           </h2>
         </motion.div>
 

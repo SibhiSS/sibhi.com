@@ -1,17 +1,26 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
+import { 
+  SiPython, 
+  SiCplusplus, 
+  SiKalilinux, 
+  SiDocker, 
+  SiCloudflare, 
+  SiMysql, 
+  SiBurpsuite, 
+  SiPytorch 
+} from "react-icons/si";
 
 const logos = [
-  { name: "Python", src: "/python-logo.png" },
-  { name: "C++", src: "/cpp-logo.png" },
-  { name: "Kali", src: "/kali-logo.png", scale: 1.1 },
-  { name: "Docker", src: "/docker-logo.png", scale: 1.1 },
-  { name: "Cloudflare", src: "/cloudflare-logo.png", scale: 1.1 },
-  { name: "MySQL", src: "/mysql-logo.png", scale: 1.1 },
-  { name: "Burp Suite", src: "/burpsuite-logo.png", scale: 1.1 },
-  { name: "PyTorch", src: "/pytorch-logo.jpg", scale: 1.1 },
+  { name: "Python", Icon: SiPython },
+  { name: "C++", Icon: SiCplusplus },
+  { name: "Kali", Icon: SiKalilinux },
+  { name: "Docker", Icon: SiDocker },
+  { name: "Cloudflare", Icon: SiCloudflare },
+  { name: "MySQL", Icon: SiMysql },
+  { name: "Burp Suite", Icon: SiBurpsuite },
+  { name: "PyTorch", Icon: SiPytorch },
 ];
 
 export default function LogoMarquee() {
@@ -30,7 +39,7 @@ export default function LogoMarquee() {
           <motion.div
             animate={{ x: ["0%", "-100%"] }}
             transition={{
-              duration: 30,
+              duration: 25,
               repeat: Infinity,
               ease: "linear",
             }}
@@ -39,22 +48,15 @@ export default function LogoMarquee() {
             {logos.map((logo, index) => (
               <div
                 key={`${logo.name}-${index}`}
-                className="relative invert grayscale brightness-200 opacity-100 transition-all duration-500 mix-blend-screen"
+                className="flex items-center justify-center opacity-70 transition-all duration-500"
                 style={{
                   width: "var(--logo-size)",
                   height: "var(--logo-size)",
-                  transform: `scale(${logo.scale || 1})`,
                   // @ts-ignore
-                  "--logo-size": "clamp(80px, 15vw, 110px)",
+                  "--logo-size": "clamp(60px, 12vw, 90px)",
                 }}
               >
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  fill
-                  unoptimized
-                  className="object-contain"
-                />
+                <logo.Icon className="w-full h-full text-white" />
               </div>
             ))}
           </motion.div>
@@ -63,7 +65,7 @@ export default function LogoMarquee() {
           <motion.div
             animate={{ x: ["0%", "-100%"] }}
             transition={{
-              duration: 30,
+              duration: 25,
               repeat: Infinity,
               ease: "linear",
             }}
@@ -72,30 +74,23 @@ export default function LogoMarquee() {
             {logos.map((logo, index) => (
               <div
                 key={`${logo.name}-dup-${index}`}
-                className="relative invert grayscale brightness-200 opacity-100 hover:scale-110 transition-all duration-500 mix-blend-screen"
+                className="flex items-center justify-center opacity-70 transition-all duration-500"
                 style={{
                   width: "var(--logo-size)",
                   height: "var(--logo-size)",
-                  transform: `scale(${logo.scale || 1})`,
                   // @ts-ignore
-                  "--logo-size": "clamp(80px, 15vw, 110px)",
+                  "--logo-size": "clamp(60px, 12vw, 90px)",
                 }}
               >
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  fill
-                  unoptimized
-                  className="object-contain"
-                />
+                <logo.Icon className="w-full h-full text-white" />
               </div>
             ))}
           </motion.div>
         </div>
       </div>
     </div>
-  </div>
-);
+    </div>
+  );
 }
 
 

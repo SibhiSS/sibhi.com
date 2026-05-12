@@ -21,8 +21,7 @@ export default function EducationSection() {
             Academics
           </span>
           <h2 className="mt-4 text-3xl md:text-4xl font-light text-white/90 tracking-tight">
-            Education
-            <span className="text-white/40 ml-3">& Foundations</span>
+            Educational <span className="text-white/40">Journey</span>
           </h2>
         </motion.div>
 
