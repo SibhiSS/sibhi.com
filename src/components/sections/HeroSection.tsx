@@ -20,7 +20,7 @@ function AnimatedName() {
           animate={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{
             duration: 1,
-            delay: 0.3 + i * 0.07,
+            delay: 0.1 + i * 0.04,
             ease: [0.16, 1, 0.3, 1],
           }}
           className={`inline-block ${letter === " " ? "w-[0.3em]" : ""}`}
@@ -72,9 +72,9 @@ export default function HeroSection() {
       >
         {/* Profile Image — Top on Mobile, Right on Desktop */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="order-1 md:order-2 w-full max-w-[320px] md:max-w-none aspect-square md:aspect-auto md:h-[70vh] flex items-center justify-center pointer-events-none"
         >
           <div className="relative w-full h-full rounded-[2.5rem] md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
@@ -92,9 +92,9 @@ export default function HeroSection() {
         {/* Typography — Bottom on Mobile, Left on Desktop */}
         <div className="order-2 md:order-1 flex flex-col items-center md:items-start text-center md:text-left z-20">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-white/60 text-base md:text-lg font-light tracking-wide mb-2"
           >
             Hi, I am
@@ -105,7 +105,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6"
           >
             <span className="block text-[10px] md:text-xs tracking-[0.35em] uppercase text-white/30 font-light mb-3">
