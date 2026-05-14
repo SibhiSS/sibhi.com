@@ -109,13 +109,15 @@ export const skills: SkillCategory[] = [
 export const projects: Project[] = [
 
   {
-    id: "nova-cps",
-    title: "Nova CPS",
+    id: "sscs-portal",
+    title: "EEE SSCS Recruitment Portal",
     description:
-      "A college club website featuring a full recruitment drive system, handling everything from applications to interview scheduling and club management.",
-    tags: ["TypeScript", "Tailwind CSS"],
-    github: "https://github.com/SibhiSS/NOVA-CPS",
-    live: "https://novacps.vercel.app/",
+      "Technical documentation for the official recruitment and administrative platform of the IEEE Solid-State Circuits Society, VIT Chennai.",
+    longDescription:
+      "The IEEE SSCS Portal is a centralized recruitment engine designed to streamline candidate applications, automate interview scheduling, and facilitate administrative oversight. The platform is engineered for high reliability, institutional security, and process automation.",
+    tags: ["React", "TypeScript", "Supabase", "Tailwind CSS", "Framer Motion"],
+    github: "https://github.com/SibhiSS/sscsportal",
+    live: "https://sscsportal.vercel.app/",
     featured: true,
   },
   {
