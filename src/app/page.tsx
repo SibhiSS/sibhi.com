@@ -1,4 +1,6 @@
 
+"use client";
+
 import dynamic from "next/dynamic";
 import SmoothScroll from "@/components/SmoothScroll";
 import BackgroundEffect from "@/components/BackgroundEffect";
