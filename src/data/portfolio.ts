@@ -110,7 +110,7 @@ export const projects: Project[] = [
 
   {
     id: "sscs-portal",
-    title: "EEE SSCS Recruitment Portal",
+    title: "SSCS Portal",
     description:
       "Technical documentation for the official recruitment and administrative platform of the IEEE Solid-State Circuits Society, VIT Chennai.",
     longDescription:
