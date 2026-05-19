@@ -226,7 +226,7 @@ export default function NudgeButton({ committedToday }: NudgeButtonProps) {
                           setName(e.target.value);
                           setSelectedPreset(null);
                         }}
-                        placeholder="e.g. Secret Admirer"
+                        placeholder="e.g. John Doe"
                         maxLength={50}
                         required
                         disabled={status === "sending"}
