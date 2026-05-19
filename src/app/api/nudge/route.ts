@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Initialize Resend with the API key from environment variables
-const resend = new Resend(process.env.RESEND_API_KEY);
+
 
 // Configurable recipient and sender emails
 const RECEIVER_EMAIL = process.env.NUDGE_RECEIVER_EMAIL || "sibhis5223@gmail.com";
@@ -49,6 +48,9 @@ export async function POST(req: Request) {
         { status: 500 }
       );
     }
+
+    // Initialize Resend dynamically
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     // Trigger email using Resend
     const { data, error } = await resend.emails.send({
