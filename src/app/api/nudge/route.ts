@@ -66,7 +66,7 @@ export async function POST(req: Request) {
           <div style="margin: 24px 0; padding: 16px; background-color: #161b22; border-radius: 8px; border-left: 4px solid #f85149; font-style: italic; font-size: 14px; color: #e6edf2;">
             "${trimmedName} is waiting for you to keep the streak alive!"
           </div>
-          <a href="https://github.com/SibhiSS" target="_blank" style="display: inline-block; background-color: #238636; color: #ffffff; text-decoration: none; padding: 10px 20px; font-size: 14px; font-weight: 500; border-radius: 6px; text-align: center;">Go to GitHub</a>
+          <a href="https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'SibhiSS'}" target="_blank" style="display: inline-block; background-color: #238636; color: #ffffff; text-decoration: none; padding: 10px 20px; font-size: 14px; font-weight: 500; border-radius: 6px; text-align: center;">Go to GitHub</a>
           <hr style="border: 0; border-top: 1px solid #21262d; margin: 24px 0;" />
           <p style="font-size: 11px; color: #484f58; margin-bottom: 0; text-align: center;">
             Sent automatically from your portfolio's nudge service.

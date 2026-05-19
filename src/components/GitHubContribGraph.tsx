@@ -81,7 +81,7 @@ export default function GitHubContribGraph({ data }: GitHubContribGraphProps) {
           {data.totalContributions} contributions in the last year
         </span>
         <span className="text-[10px] tracking-[0.2em] uppercase text-white/20 hidden md:block">
-          SibhiSS Activity
+          {process.env.NEXT_PUBLIC_GITHUB_USERNAME || "SibhiSS"} Activity
         </span>
       </div>
 

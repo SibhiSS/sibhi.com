@@ -23,7 +23,8 @@ export default function GitHubSection() {
   const [committedToday, setCommittedToday] = useState(true); // Default to true to prevent screen flashes
 
   useEffect(() => {
-    fetch(`https://github-contributions-api.deno.dev/SibhiSS.json?_=${Date.now()}`)
+    const githubUsername = process.env.NEXT_PUBLIC_GITHUB_USERNAME || "SibhiSS";
+    fetch(`https://github-contributions-api.deno.dev/${githubUsername}.json?_=${Date.now()}`)
       .then((r) => r.json())
       .then((j) => {
         setData(j);
@@ -98,14 +99,14 @@ export default function GitHubSection() {
           className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
         >
           <a
-            href="https://github.com/SibhiSS"
+            href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || "SibhiSS"}`}
             target="_blank"
             rel="noreferrer"
             className="flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-2xl border border-white/[0.05] bg-white/[0.01] p-4 md:p-6"
           >
             <img
-              src="https://github-readme-streak-stats.herokuapp.com/?user=SibhiSS&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=a3a3a3&sideLabels=a3a3a3&dates=737373&stroke=ffffff20&v=4"
-              alt="Sibhi's GitHub Streak Stats"
+              src={`https://github-readme-streak-stats.herokuapp.com/?user=${process.env.NEXT_PUBLIC_GITHUB_USERNAME || "SibhiSS"}&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=a3a3a3&sideLabels=a3a3a3&dates=737373&stroke=ffffff20&v=4`}
+              alt={`${process.env.NEXT_PUBLIC_GITHUB_USERNAME || "SibhiSS"}'s GitHub Streak Stats`}
               className="w-full object-contain"
             />
           </a>
