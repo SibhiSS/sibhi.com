@@ -35,16 +35,12 @@ const ROWS = 7;
 const GRAPH_H = MONTH_H + ROWS * STEP; 
 const SKELETON_H = 32 + 16 + 16 + GRAPH_H + 32;
 
-export default function GitHubContribGraph() {
-  const [data, setData] = useState<ContributionData | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+interface GitHubContribGraphProps {
+  data: ContributionData | null;
+}
 
-  useEffect(() => {
-    fetch(`https://github-contributions-api.deno.dev/SibhiSS.json?_=${Date.now()}`)
-      .then((r) => r.json())
-      .then((j) => setData(j))
-      .catch(() => {});
-  }, []);
+export default function GitHubContribGraph({ data }: GitHubContribGraphProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to the right on load
   useEffect(() => {
