@@ -8,12 +8,7 @@ interface NudgeButtonProps {
 }
 
 const PRESET_NAMES = [
-  { label: "Gf 💖", value: "Priya" },
-  { label: "Best Friend 🤝", value: "Aditya" },
-  { label: "Dad 👨", value: "Dad" },
-  { label: "Mom 👩", value: "Mom" },
-  { label: "Friend ☕", value: "A Friend" },
-  { label: "Stranger 🌐", value: "A Stranger" },
+  { label: "Anonymous", value: "Anonymous" },
 ];
 
 export default function NudgeButton({ committedToday }: NudgeButtonProps) {
@@ -102,7 +97,7 @@ export default function NudgeButton({ committedToday }: NudgeButtonProps) {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          All caught up! Sibhi has already committed to GitHub today. 🚀
+          All caught up! Sibhi has already committed to GitHub today.
         </div>
       ) : (
         <div className="space-y-4">
@@ -124,7 +119,7 @@ export default function NudgeButton({ committedToday }: NudgeButtonProps) {
                 onClick={() => setIsOpen(true)}
                 className="self-start sm:self-auto px-4 py-2 text-xs font-medium rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 hover:border-rose-500/50 text-white transition-all duration-300 shadow-[0_0_15px_rgba(239,68,68,0.05)] cursor-pointer"
               >
-                Nudge Sibhi ⚠️
+                Nudge Sibhi
               </button>
             )}
           </div>
@@ -191,7 +186,7 @@ export default function NudgeButton({ committedToday }: NudgeButtonProps) {
                     </div>
                     <h4 className="text-sm font-medium text-white">Nudge Transmitted!</h4>
                     <p className="text-xs text-white/50 mt-1 font-light">
-                      Email alert successfully dispatched to Sibhi. You just kept his streak alive! 😉
+                      Email alert successfully dispatched to Sibhi. You just kept his streak alive!
                     </p>
                   </motion.div>
                 ) : (
@@ -201,7 +196,7 @@ export default function NudgeButton({ committedToday }: NudgeButtonProps) {
                       <label className="text-[10px] tracking-[0.1em] uppercase text-white/30 block font-light">
                         Select identity preset
                       </label>
-                      <div className="grid grid-cols-3 gap-2">
+                      <div className="flex gap-2">
                         {PRESET_NAMES.map((preset) => (
                           <button
                             key={preset.value}
@@ -222,7 +217,7 @@ export default function NudgeButton({ committedToday }: NudgeButtonProps) {
                     {/* Custom Input */}
                     <div className="space-y-2">
                       <label className="text-[10px] tracking-[0.1em] uppercase text-white/30 block font-light">
-                        Or enter custom name
+                        Or enter your name
                       </label>
                       <input
                         type="text"
