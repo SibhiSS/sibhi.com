@@ -77,10 +77,11 @@ export default function NudgeButton({ committedToday }: NudgeButtonProps) {
         setName("");
         setSelectedPreset(null);
       }, 3000);
-    } catch (err: any) {
-      console.error(err);
+    } catch (err) {
+      const error = err as Error;
+      console.error(error);
       setStatus("error");
-      setErrorMessage(err.message || "An unexpected error occurred.");
+      setErrorMessage(error.message || "An unexpected error occurred.");
     }
   };
 

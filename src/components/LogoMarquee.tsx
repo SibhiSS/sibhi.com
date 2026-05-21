@@ -52,9 +52,8 @@ export default function LogoMarquee() {
                   style={{
                     width: "var(--logo-size)",
                     height: "var(--logo-size)",
-                    // @ts-ignore
                     "--logo-size": "clamp(48px, 8vw, 72px)",
-                  }}
+                  } as React.CSSProperties}
                 >
                   <logo.Icon className="w-full h-full text-white" />
                 </div>
@@ -78,9 +77,8 @@ export default function LogoMarquee() {
                   style={{
                     width: "var(--logo-size)",
                     height: "var(--logo-size)",
-                    // @ts-ignore
                     "--logo-size": "clamp(48px, 8vw, 72px)",
-                  }}
+                  } as React.CSSProperties}
                 >
                   <logo.Icon className="w-full h-full text-white" />
                 </div>

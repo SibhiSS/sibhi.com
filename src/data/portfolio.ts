@@ -236,6 +236,14 @@ export const research: ResearchEntry[] = [
       "Analyzing and comparing the performance of multiple machine learning models and developing custom Convolutional Neural Network (CNN) architectures.",
     status: "ongoing",
   },
+  {
+    id: "research-3",
+    title: "Predictive QKD in Turbulent FSO",
+    area: "Quantum Communications × Deep Learning",
+    description:
+      "Developing a deep learning-based, channel-aware Quantum Key Distribution (QKD) framework to predict and mitigate atmospheric turbulence in secure 6G Free-Space Optical (FSO) links.",
+    status: "ongoing",
+  },
 ];
 
 // ── Clubs / Leadership ──
