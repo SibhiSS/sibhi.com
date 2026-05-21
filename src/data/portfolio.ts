@@ -152,6 +152,20 @@ export const projects: Project[] = [
 // ── Experience ──
 export const experiences: Experience[] = [
   {
+    id: "exp-0",
+    role: "Research Intern",
+    organization: "National Institute of Technology Karnataka (NITK), Surathkal",
+    period: "May 2026 — Present",
+    description:
+      "Research Intern engaged in frontier technology exploration, advanced systems development, and academic research collaboration.",
+    tags: ["Research", "Systems Engineering"],
+    tasks: [
+      "Collaborating on advanced research initiatives and hardware/software systems modeling.",
+      "Conducting literature reviews and formulating experimental methodologies under faculty guidance.",
+    ],
+    logo: "/nitk.png",
+  },
+  {
     id: "exp-1",
     role: "Contributor and Ambassador",
     organization: "GirlScript Summer of Code",
