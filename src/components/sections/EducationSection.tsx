@@ -58,7 +58,7 @@ export default function EducationSection() {
                   <div className="absolute inset-0 w-2 h-2 rounded-full bg-white/5 animate-ping" />
                 </div>
 
-                <div className="p-6 md:p-8 rounded-2xl border border-white/[0.03] bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/[0.08] transition-all duration-500 overflow-hidden">
+                <div className="p-6 md:p-8 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-500 overflow-hidden">
                   <div className="flex justify-between items-center gap-4">
                     <div className="flex items-center gap-4 md:gap-5">
                       {/* Institution Logo */}

@@ -55,7 +55,7 @@ export default function ResearchSection() {
                   ease: [0.16, 1, 0.3, 1],
                 },
               }}
-              className="group relative p-6 md:p-8 rounded-2xl border border-white/[0.03] bg-white/[0.008] hover:bg-white/[0.02] hover:border-white/[0.06] transition-all duration-700"
+              className="group relative p-6 md:p-8 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-700"
             >
               <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
                 {/* Index + Status */}

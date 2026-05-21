@@ -52,7 +52,7 @@ export default function GitHubContribGraph({ data }: GitHubContribGraphProps) {
   if (!data) {
     return (
       <div
-        className="rounded-2xl border border-white/[0.05] bg-white/[0.01] p-6 md:p-8 flex items-center justify-center"
+        className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 md:p-8 flex items-center justify-center"
         style={{ minHeight: SKELETON_H }}
       >
         <div className="text-white/30 text-sm animate-pulse">Loading contributions…</div>
@@ -74,7 +74,7 @@ export default function GitHubContribGraph({ data }: GitHubContribGraphProps) {
   });
 
   return (
-    <div className="rounded-2xl border border-white/[0.05] bg-white/[0.01] p-6 md:p-8 overflow-hidden">
+    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 md:p-8 overflow-hidden">
       {/* Header */}
       <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-2">
         <span className="text-sm font-light text-white/60">
@@ -89,7 +89,7 @@ export default function GitHubContribGraph({ data }: GitHubContribGraphProps) {
       <div className="relative group">
         <div 
           ref={scrollRef} 
-          className="w-full overflow-x-auto scrollbar-hide rounded-xl border border-white/[0.04] bg-black/20 p-4 md:p-6 cursor-grab active:cursor-grabbing"
+          className="w-full overflow-x-auto scrollbar-hide rounded-xl border border-white/[0.08] bg-black/40 p-4 md:p-6 cursor-grab active:cursor-grabbing"
         >
           <div className="inline-block">
             <svg

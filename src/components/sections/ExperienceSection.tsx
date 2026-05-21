@@ -66,7 +66,7 @@ export default function ExperienceSection() {
 
                   <div 
                     onClick={() => setExpandedId(isExpanded ? null : exp.id)}
-                    className="p-6 md:p-8 rounded-2xl border border-white/[0.03] bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/[0.08] transition-all duration-500 cursor-pointer overflow-hidden"
+                    className="p-6 md:p-8 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-500 cursor-pointer overflow-hidden"
                   >
                     <div className="flex justify-between items-center gap-4">
                       <div className="flex items-center gap-4 md:gap-5">
@@ -119,7 +119,7 @@ export default function ExperienceSection() {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                         >
-                          <div className="pt-6 mt-6 border-t border-white/[0.04]">
+                          <div className="pt-6 mt-6 border-t border-white/[0.08]">
                             {exp.images && exp.images.length > 0 && (
                               <div className={`flex flex-wrap ${exp.imageLayout === 'photo' ? 'gap-6' : 'gap-4 md:gap-6'} mb-8 mt-2`}>
                                 {exp.images.map((imgSrc, idx) => (
@@ -179,7 +179,7 @@ export default function ExperienceSection() {
                         {exp.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-2.5 py-1 text-[9px] tracking-[0.1em] text-white/20 border border-white/[0.03] rounded-full"
+                            className="px-2.5 py-1 text-[9px] tracking-[0.1em] text-white/35 border border-white/[0.08] rounded-full"
                           >
                             {tag}
                           </span>

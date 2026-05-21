@@ -156,7 +156,7 @@ export default function NudgeButton({ committedToday }: NudgeButtonProps) {
               <button
                 onClick={() => setIsOpen(false)}
                 disabled={status === "sending"}
-                className="absolute top-4 right-4 text-white/30 hover:text-white/70 p-1.5 rounded-lg border border-white/[0.04] bg-white/[0.02] hover:bg-white/[0.06] transition-all cursor-pointer"
+                className="absolute top-4 right-4 text-white/30 hover:text-white/70 p-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.08] transition-all cursor-pointer"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -206,7 +206,7 @@ export default function NudgeButton({ committedToday }: NudgeButtonProps) {
                             className={`px-2 py-2.5 text-xs font-light rounded-lg border text-center transition-all duration-300 cursor-pointer ${
                               selectedPreset === preset.value
                                 ? "bg-white/[0.08] border-white/30 text-white"
-                                : "bg-white/[0.01] border-white/[0.04] text-white/50 hover:bg-white/[0.03] hover:text-white"
+                                : "bg-white/[0.03] border-white/[0.08] text-white/50 hover:bg-white/[0.06] hover:text-white"
                             }`}
                           >
                             {preset.label}
@@ -231,7 +231,7 @@ export default function NudgeButton({ committedToday }: NudgeButtonProps) {
                         maxLength={50}
                         required
                         disabled={status === "sending"}
-                        className="w-full px-4 py-3 rounded-lg border border-white/[0.05] bg-black/40 text-white placeholder-white/20 text-xs font-light tracking-wide focus:outline-none focus:border-white/25 focus:ring-1 focus:ring-white/25 transition-all"
+                        className="w-full px-4 py-3 rounded-lg border border-white/[0.08] bg-black/40 text-white placeholder-white/20 text-xs font-light tracking-wide focus:outline-none focus:border-white/25 focus:ring-1 focus:ring-white/25 transition-all"
                       />
                     </div>
 

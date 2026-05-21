@@ -23,14 +23,14 @@ function ProjectCard({
       onClick={onClick}
       className="group relative cursor-pointer"
     >
-      <div className="relative p-8 md:p-10 rounded-2xl border border-white/[0.04] bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/[0.08] transition-all duration-700 overflow-hidden">
+      <div className="relative p-8 md:p-10 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-700 overflow-hidden">
         {/* Ambient glow */}
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/[0.01] rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
         <div className="relative">
           {/* Featured badge */}
           {project.featured && (
-            <span className="inline-block px-2.5 py-1 text-[8px] tracking-[0.25em] uppercase text-white/30 border border-white/[0.06] rounded-full mb-6">
+            <span className="inline-block px-2.5 py-1 text-[8px] tracking-[0.25em] uppercase text-white/30 border border-white/[0.12] rounded-full mb-6">
               Featured
             </span>
           )}
@@ -48,7 +48,7 @@ function ProjectCard({
             {project.tags.slice(0, 4).map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 text-[9px] tracking-[0.1em] text-white/20 border border-white/[0.03] rounded-full"
+                className="px-2.5 py-1 text-[9px] tracking-[0.1em] text-white/35 border border-white/[0.08] rounded-full"
               >
                 {tag}
               </span>
@@ -106,7 +106,7 @@ function ProjectModal({
         exit={{ opacity: 0, y: 40, scale: 0.97 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
-        className="relative max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-3xl border border-white/[0.06] bg-black p-8 md:p-12"
+        className="relative max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-3xl border border-white/[0.12] bg-black p-8 md:p-12"
       >
         {/* Close button */}
         <button
@@ -130,7 +130,7 @@ function ProjectModal({
         </button>
 
         {project.featured && (
-          <span className="inline-block px-2.5 py-1 text-[8px] tracking-[0.25em] uppercase text-white/30 border border-white/[0.06] rounded-full mb-6">
+          <span className="inline-block px-2.5 py-1 text-[8px] tracking-[0.25em] uppercase text-white/30 border border-white/[0.12] rounded-full mb-6">
             Featured Project
           </span>
         )}
@@ -150,7 +150,7 @@ function ProjectModal({
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1.5 text-[10px] tracking-[0.1em] text-white/30 border border-white/[0.05] rounded-full"
+              className="px-3 py-1.5 text-[10px] tracking-[0.1em] text-white/40 border border-white/[0.08] rounded-full"
             >
               {tag}
             </span>
@@ -164,7 +164,7 @@ function ProjectModal({
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-2.5 text-[10px] tracking-[0.2em] uppercase text-white/60 border border-white/[0.08] rounded-full hover:bg-white/[0.04] hover:text-white/90 transition-all duration-500"
+              className="px-6 py-2.5 text-[10px] tracking-[0.2em] uppercase text-white/60 border border-white/[0.15] rounded-full hover:bg-white/[0.08] hover:text-white/90 transition-all duration-500"
             >
               GitHub
             </a>
@@ -174,7 +174,7 @@ function ProjectModal({
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-2.5 text-[10px] tracking-[0.2em] uppercase text-white/60 border border-white/[0.08] rounded-full hover:bg-white/[0.04] hover:text-white/90 transition-all duration-500"
+              className="px-6 py-2.5 text-[10px] tracking-[0.2em] uppercase text-white/60 border border-white/[0.15] rounded-full hover:bg-white/[0.08] hover:text-white/90 transition-all duration-500"
             >
               Live Demo
             </a>

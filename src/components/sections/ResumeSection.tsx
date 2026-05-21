@@ -16,7 +16,7 @@ export default function ResumeSection() {
           className="flex flex-col items-center text-center"
         >
           {/* Glass Card */}
-          <div className="relative p-12 md:p-16 rounded-3xl border border-white/[0.04] bg-white/[0.01] max-w-2xl w-full overflow-hidden">
+          <div className="relative p-12 md:p-16 rounded-3xl border border-white/[0.08] bg-white/[0.03] max-w-2xl w-full overflow-hidden">
             {/* Ambient Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[200px] bg-[radial-gradient(ellipse,rgba(255,255,255,0.02)_0%,transparent_60%)] blur-2xl" />
 

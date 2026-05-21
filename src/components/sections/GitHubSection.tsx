@@ -102,7 +102,7 @@ export default function GitHubSection() {
             href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || "SibhiSS"}`}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-300 rounded-2xl border border-white/[0.05] bg-white/[0.01] p-4 md:p-6"
+            className="flex items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300 rounded-2xl border border-white/[0.08] hover:border-white/[0.15] bg-white/[0.03] hover:bg-white/[0.06] p-4 md:p-6"
           >
             <img
               src={`https://github-readme-streak-stats.herokuapp.com/?user=${process.env.NEXT_PUBLIC_GITHUB_USERNAME || "SibhiSS"}&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=a3a3a3&sideLabels=a3a3a3&dates=737373&stroke=ffffff20&v=4`}
@@ -111,7 +111,7 @@ export default function GitHubSection() {
             />
           </a>
 
-          <div className="flex flex-col justify-center p-8 rounded-2xl border border-white/[0.05] bg-white/[0.01]">
+          <div className="flex flex-col justify-center p-8 rounded-2xl border border-white/[0.08] bg-white/[0.03]">
             <span className="text-[10px] tracking-[0.3em] uppercase text-white/20 mb-2">Daily Progress</span>
             <h3 className="text-xl font-light text-white/80 leading-relaxed">
               Consistency is <span className="text-emerald-400/80 italic">everything</span>.

@@ -88,7 +88,7 @@ export default function ContactSection() {
                 href={link.href}
                 target={link.label !== "Email" ? "_blank" : undefined}
                 rel={link.label !== "Email" ? "noopener noreferrer" : undefined}
-                className="group flex items-center gap-5 p-5 md:p-6 rounded-2xl border border-white/[0.03] bg-white/[0.008] hover:bg-white/[0.025] hover:border-white/[0.08] transition-all duration-700"
+                className="group flex items-center gap-5 p-5 md:p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-700"
               >
                 <div className="text-white/20 group-hover:text-white/50 transition-colors duration-500">
                   {link.icon}

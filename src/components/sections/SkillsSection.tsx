@@ -17,7 +17,7 @@ function SkillCard({
     <motion.div
       variants={fadeUp}
       whileHover={{ y: -6, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }}
-      className="group relative h-full w-full p-6 md:p-8 rounded-2xl border border-white/[0.04] bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/[0.08] transition-all duration-700"
+      className="group relative h-full w-full p-6 md:p-8 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-700"
     >
       {/* Glow on hover */}
       <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -38,7 +38,7 @@ function SkillCard({
           {items.map((item) => (
             <span
               key={item}
-              className="px-3 py-1.5 text-[10px] md:text-[11px] tracking-[0.1em] text-white/30 border border-white/[0.04] rounded-full group-hover:text-white/50 group-hover:border-white/[0.08] transition-all duration-500"
+              className="px-3 py-1.5 text-[10px] md:text-[11px] tracking-[0.1em] text-white/40 border border-white/[0.08] rounded-full group-hover:text-white/60 group-hover:border-white/[0.15] transition-all duration-500"
             >
               {item}
             </span>

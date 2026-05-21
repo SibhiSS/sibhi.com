@@ -46,7 +46,7 @@ export default function ClubsSection() {
                   ease: [0.16, 1, 0.3, 1],
                 },
               }}
-              className="group relative p-6 md:p-8 rounded-2xl border border-white/[0.04] bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/[0.08] transition-all duration-700"
+              className="group relative p-6 md:p-8 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-700"
             >
               <span className="text-[10px] tracking-[0.3em] uppercase text-white/15 font-mono">
                 0{i + 1}
