@@ -27,6 +27,7 @@ export interface Experience {
   images?: string[]; // Optional images to display
   imageLayout?: "badge" | "photo"; // Style of the images
   logo?: string; // Small organization logo
+  logoPadding?: "none" | "small" | "normal"; // Custom padding style for logo
 }
 
 export interface Education {
@@ -165,6 +166,7 @@ export const experiences: Experience[] = [
       "Collaborating with academic researchers to evaluate the integration of quantum cryptography in secure 6G wireless architectures.",
     ],
     logo: "/nitk.png",
+    logoPadding: "none",
   },
   {
     id: "exp-1",

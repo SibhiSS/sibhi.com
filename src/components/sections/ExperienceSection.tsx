@@ -77,7 +77,13 @@ export default function ExperienceSection() {
                               src={exp.logo}
                               alt={`${exp.organization} logo`}
                               fill
-                              className="object-contain p-1 hover:scale-110 transition-transform duration-500" 
+                              className={`object-contain hover:scale-110 transition-transform duration-500 ${
+                                exp.logoPadding === "none"
+                                  ? "p-0"
+                                  : exp.logoPadding === "small"
+                                  ? "p-1"
+                                  : "p-2"
+                              }`} 
                             />
                           </div>
                         )}
