@@ -72,12 +72,12 @@ export default function ExperienceSection() {
                       <div className="flex items-center gap-4 md:gap-5">
                         {/* Organization Logo */}
                         {exp.logo && (
-                          <div className="relative w-16 h-16 md:w-20 md:h-20 shrink-0 rounded-full overflow-hidden bg-white shadow-[0_0_15px_rgba(255,255,255,0.05)] border border-white/10">
+                          <div className="relative w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-full overflow-hidden bg-white shadow-[0_0_15px_rgba(255,255,255,0.05)] border border-white/10">
                             <Image
                               src={exp.logo}
                               alt={`${exp.organization} logo`}
                               fill
-                              className="object-contain p-2 hover:scale-110 transition-transform duration-500" 
+                              className="object-contain p-1 hover:scale-110 transition-transform duration-500" 
                             />
                           </div>
                         )}

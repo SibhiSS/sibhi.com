@@ -157,11 +157,12 @@ export const experiences: Experience[] = [
     organization: "National Institute of Technology Karnataka (NITK), Surathkal",
     period: "May 2026 — Present",
     description:
-      "Research Intern engaged in frontier technology exploration, advanced systems development, and academic research collaboration.",
-    tags: ["Research", "Systems Engineering"],
+      "Research Intern focused on developing secure Quantum Key Distribution (QKD) frameworks for Free-Space Optical (FSO) links in next-generation 6G wireless networks.",
+    tags: ["QKD", "FSO Links", "6G Security", "Deep Learning"],
     tasks: [
-      "Collaborating on advanced research initiatives and hardware/software systems modeling.",
-      "Conducting literature reviews and formulating experimental methodologies under faculty guidance.",
+      "Investigating predictive channel-aware QKD protocols to secure optical communication channels against atmospheric turbulence.",
+      "Designing deep learning models to predict and mitigate fading and channel fluctuations in turbulent FSO links.",
+      "Collaborating with academic researchers to evaluate the integration of quantum cryptography in secure 6G wireless architectures.",
     ],
     logo: "/nitk.png",
   },
