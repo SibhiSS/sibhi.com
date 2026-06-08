@@ -23,8 +23,7 @@ function AnimatedName() {
             delay: 0.1 + i * 0.04,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className={`inline-block ${letter === " " ? "w-[0.3em]" : ""}`}
-          style={{ perspective: "800px" }}
+          className={`inline-block ${letter === " " ? "w-[0.3em]" : ""} [perspective:800px]`}
         >
           {letter === " " ? "\u00A0" : letter}
         </motion.span>
@@ -56,12 +55,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.015)_0%,transparent_70%)] pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(ellipse,rgba(120,130,140,0.06)_0%,transparent_60%)] blur-3xl pointer-events-none" />
         <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "100px 100px",
-          }}
+          className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:100px_100px]"
         />
       </div>
 
@@ -108,12 +102,12 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6"
           >
-            <span className="block text-[10px] md:text-xs tracking-[0.35em] uppercase text-white/30 font-light mb-3">
+            <h2 className="block text-[10px] md:text-xs tracking-[0.35em] uppercase text-white/30 font-light mb-3">
               Computer Science Engineering · VIT Chennai
-            </span>
+            </h2>
             <div className="flex items-center justify-center md:justify-start gap-2 text-xs md:text-sm text-white/40 font-light tracking-wide">
               <div className="w-1.5 h-1.5 rounded-full bg-white/20"></div>
-              <span>Exploring AI & Security</span>
+              <h3>Exploring Machine Learning & Quantum Systems</h3>
             </div>
           </motion.div>
 

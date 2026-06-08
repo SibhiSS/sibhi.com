@@ -70,7 +70,8 @@ export const hero = {
 export const about = {
   paragraphs: [
     "I am a Computer Science Engineering student at VIT Chennai with a deep fascination for frontier technologies. My work sits at the intersection of cybersecurity, quantum computing, and machine learning — driven by intellectual curiosity and a desire to build systems that push boundaries.",
-    "I approach engineering not as a set of tools to learn, but as a discipline of thinking — rigorously, creatively, and at scale. Whether it's designing secure architectures, exploring quantum algorithms, or training intelligent models, I pursue depth over breadth.",
+    "I approach engineering not as a set of tools to learn, but as a discipline of thinking — rigorously, creatively, and at scale. Whether it's designing secure architectures, exploring quantum algorithms, or training intelligent machine learning models, I pursue depth over breadth. My academic journey at VIT Chennai has provided a strong foundation in both theoretical computer science and practical software engineering, allowing me to tackle complex problems in machine learning and quantum systems.",
+    "Beyond coursework, I actively engage in research, particularly exploring how quantum key distribution can secure next-generation communication networks. By combining deep learning techniques with quantum cryptography, I aim to create robust solutions for the evolving landscape of digital security.",
     "My goal is to contribute to research-driven engineering that solves consequential problems. I believe the most impactful work emerges from combining theoretical understanding with hands-on systems building.",
   ],
 };

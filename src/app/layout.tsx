@@ -40,12 +40,12 @@ export const metadata: Metadata = {
 
   // Title: 55 chars — within the ideal 50–60 char range
   title: {
-    default: "Sibhi S | Engineer · Researcher · Builder | Portfolio",
+    default: "Sibhi S | Machine Learning & Quantum Systems | VIT Chennai",
     template: "%s | Sibhi S",
   },
 
   description:
-    "Personal portfolio of Sibhi S — a Computer Science Engineering student at VIT Chennai exploring cybersecurity, quantum computing, and machine learning.",
+    "Personal portfolio of Sibhi S — a Computer Science Engineering student at VIT Chennai doing research in cybersecurity, quantum systems, and machine learning.",
 
   keywords: [
     "Sibhi S",
@@ -80,9 +80,9 @@ export const metadata: Metadata = {
 
   // ── Open Graph ──
   openGraph: {
-    title: "Sibhi S | Engineer · Researcher · Builder | Portfolio",
+    title: "Sibhi S | Machine Learning & Quantum Systems | VIT Chennai",
     description:
-      "Personal portfolio of Sibhi S — a Computer Science Engineering student at VIT Chennai exploring cybersecurity, quantum computing, and machine learning.",
+      "Personal portfolio of Sibhi S — a Computer Science Engineering student at VIT Chennai doing research in cybersecurity, quantum systems, and machine learning.",
     type: "profile",
     url: BASE_URL,
     siteName: "Sibhi S",
@@ -101,9 +101,9 @@ export const metadata: Metadata = {
   // ── Twitter / X Cards ──
   twitter: {
     card: "summary_large_image",
-    title: "Sibhi S | Engineer · Researcher · Builder",
+    title: "Sibhi S | Machine Learning & Quantum Systems | VIT Chennai",
     description:
-      "Exploring Security, Quantum Systems & Intelligent Technologies.",
+      "Research in cybersecurity, quantum systems, and machine learning at VIT Chennai.",
     creator: "@sibhi_",
     images: [
       {
@@ -216,6 +216,12 @@ const jsonLd = {
         skills:
           "Quantum Key Distribution, Machine Learning, Deep Learning, Cybersecurity",
       },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Chennai",
+        addressRegion: "Tamil Nadu",
+        addressCountry: "India"
+      },
       sameAs: [
         "https://github.com/SibhiSS",
         "https://www.linkedin.com/in/sibhis/",
@@ -239,9 +245,9 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${BASE_URL}/#website`,
       url: BASE_URL,
-      name: "Sibhi S — Engineer · Researcher · Builder",
+      name: "Sibhi S — Machine Learning & Quantum Systems",
       description:
-        "Personal portfolio of Sibhi S — exploring cybersecurity, quantum computing, and machine learning.",
+        "Personal portfolio of Sibhi S — exploring cybersecurity, quantum systems, and machine learning at VIT Chennai.",
       author: { "@id": `${BASE_URL}/#person` },
       publisher: { "@id": `${BASE_URL}/#person` },
       inLanguage: "en-US",
@@ -255,7 +261,7 @@ const jsonLd = {
       "@type": "ProfilePage",
       "@id": `${BASE_URL}/#profilepage`,
       url: BASE_URL,
-      name: "Sibhi S | Engineer · Researcher · Builder | Portfolio",
+      name: "Sibhi S | Machine Learning & Quantum Systems | VIT Chennai",
       isPartOf: { "@id": `${BASE_URL}/#website` },
       about: { "@id": `${BASE_URL}/#person` },
       mainEntity: { "@id": `${BASE_URL}/#person` },

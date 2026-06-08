@@ -49,8 +49,7 @@ export default function Navigation() {
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-white/90 font-medium text-lg tracking-wider hover:text-white transition-colors duration-300 cursor-pointer"
-            style={{ fontFamily: "var(--font-display)" }}
+            className="text-white/90 font-medium text-lg tracking-wider hover:text-white transition-colors duration-300 cursor-pointer [font-family:var(--font-display)]"
           >
             S<span className="text-white/40">.</span>
           </button>

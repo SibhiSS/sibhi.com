@@ -28,11 +28,7 @@ export default function LogoMarquee() {
     <div className="relative pt-4 pb-16">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div 
-          className="overflow-hidden"
-          style={{
-            maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-            WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-          }}
+          className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]"
         >
           <div className="flex w-max">
             {/* First set of logos */}
@@ -48,12 +44,7 @@ export default function LogoMarquee() {
               {logos.map((logo, index) => (
                 <div
                   key={`${logo.name}-${index}`}
-                  className="flex items-center justify-center opacity-70 hover:opacity-100 transition-all duration-500"
-                  style={{
-                    width: "var(--logo-size)",
-                    height: "var(--logo-size)",
-                    "--logo-size": "clamp(48px, 8vw, 72px)",
-                  } as React.CSSProperties}
+                  className="flex items-center justify-center opacity-70 hover:opacity-100 transition-all duration-500 w-[clamp(48px,8vw,72px)] h-[clamp(48px,8vw,72px)]"
                 >
                   <logo.Icon className="w-full h-full text-white" />
                 </div>
@@ -73,12 +64,7 @@ export default function LogoMarquee() {
               {logos.map((logo, index) => (
                 <div
                   key={`${logo.name}-dup-${index}`}
-                  className="flex items-center justify-center opacity-70 hover:opacity-100 transition-all duration-500"
-                  style={{
-                    width: "var(--logo-size)",
-                    height: "var(--logo-size)",
-                    "--logo-size": "clamp(48px, 8vw, 72px)",
-                  } as React.CSSProperties}
+                  className="flex items-center justify-center opacity-70 hover:opacity-100 transition-all duration-500 w-[clamp(48px,8vw,72px)] h-[clamp(48px,8vw,72px)]"
                 >
                   <logo.Icon className="w-full h-full text-white" />
                 </div>

@@ -62,8 +62,7 @@ export default function Footer() {
           {/* Brand + description */}
           <div className="md:col-span-1">
             <span
-              className="text-white/40 text-2xl tracking-wider font-light"
-              style={{ fontFamily: "var(--font-display)" }}
+              className="text-white/40 text-2xl tracking-wider font-light [font-family:var(--font-display)]"
             >
               Sibhi S
             </span>
