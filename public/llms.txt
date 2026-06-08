@@ -1,0 +1,53 @@
+# Sibhi S — Personal Portfolio
+
+> Sibhi S is a Computer Science Engineering student at VIT Chennai specializing in cybersecurity, quantum computing, and machine learning. Currently a Research Intern at NITK Surathkal working on Quantum Key Distribution (QKD) for 6G Free-Space Optical networks.
+
+## About
+
+Engineer, researcher, and builder exploring frontier technologies at the intersection of cybersecurity, quantum computing, and machine learning. Pursuing a B.Tech in Computer Science Engineering with a specialization in Cyber Physical Systems at VIT Chennai (2024–2028).
+
+## Research
+
+- **Predictive QKD in Turbulent FSO** (NITK Surathkal, May 2026–Present): Developing a deep learning-based, channel-aware Quantum Key Distribution (QKD) framework to predict and mitigate atmospheric turbulence in secure 6G Free-Space Optical (FSO) links.
+- **Securing Digital Twin Sync with QKD** (Ongoing): Investigating implementation of QKD protocols to secure real-time data synchronization between physical assets and their digital twins (Quantum Cryptography × Cyber Physical Systems).
+- **ML Image Classification** (Centre for Cyber Physical Systems, VIT Chennai, Mar 2026–Present): Analyzing and comparing 15+ machine learning models and developing custom Convolutional Neural Network (CNN) architectures using the Intel Image Dataset with CUDA acceleration.
+
+## Projects
+
+- **SSCS Portal** — Centralized recruitment and administrative platform for IEEE SSCS VIT Chennai chapter. Tech: React, TypeScript, Supabase, Tailwind CSS, Framer Motion. Live: https://sscsportal.vercel.app/ | Code: https://github.com/SibhiSS/sscsportal
+- **PhishNet** — ML-based phishing detection system for emails and websites using NLP and Gmail integration with real-time analysis. Tech: Python, JavaScript, Machine Learning, NLP. Code: https://github.com/SibhiSS/PhishNet
+- **Self-Hosted Cloud Server (Home Lab)** — Converted old laptop into a Linux server running containerized Nextcloud, PostgreSQL, Redis, and Nginx as reverse proxy, securely exposed via Cloudflare Tunnel. Architecture: Cloudflare → Tunnel → Nginx → Nextcloud → PostgreSQL.
+- **CardioScope** — Python-based cardiac data analysis using machine learning and signal processing. Code: https://github.com/SibhiSS/CardioScope
+
+## Experience
+
+- **Research Intern** — National Institute of Technology Karnataka (NITK), Surathkal (May 2026–Present): QKD/FSO research for 6G security, deep learning models for atmospheric channel prediction.
+- **Contributor & Ambassador** — GirlScript Summer of Code (Apr 2026–Present): Open-source software development and community building.
+- **ML Research Intern** — Centre for Cyber Physical Systems, VIT Chennai (Mar 2026–Present): Advanced image classification, 15+ ML model benchmarking, custom CNN development with CUDA.
+- **Associate Operations Team Lead** — IEEE Solid-State Circuits Society (SSCS), VIT Chennai (Aug 2025–Present): Led 'Capture the Signal' event, managed 250+ candidate recruitment process, coordinated 75+ member cross-team operations.
+
+## Skills
+
+- **Programming**: Python, C, C++, JavaScript, Java, SQL
+- **Cybersecurity**: Network Analysis, SIEM, Wireshark, Metasploit, Penetration Testing
+- **Machine Learning**: PyTorch, Deep Learning, NLP, CNN, CUDA, Computer Vision
+- **Systems & Infrastructure**: Linux Administration, Docker, Cloud Computing, Nginx, PostgreSQL
+- **Frameworks & Tools**: React, Next.js, Node.js, Git, Supabase, Cloudflare, VS Code
+
+## Education
+
+- **B.Tech CSE (Specialisation in Cyber Physical Systems)** — VIT Chennai (2024–2028)
+- **Secondary & Higher Secondary Education** — The Ashok Leyland School, Hosur (Completed 2024)
+
+## Contact & Links
+
+- Website: https://www.sibhi.com
+- Email: sibhis5223@gmail.com
+- GitHub: https://github.com/SibhiSS
+- LinkedIn: https://www.linkedin.com/in/sibhis/
+- Instagram: https://instagram.com/sibhi_
+- Resume: https://www.sibhi.com/resume.pdf
+
+## Availability
+
+Open to research collaborations, open-source contributions, and internship opportunities in cybersecurity, quantum computing, and machine learning.
