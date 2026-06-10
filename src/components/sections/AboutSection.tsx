@@ -17,14 +17,18 @@ export default function AboutSection() {
             viewport={{ once: true, margin: "-100px" }}
             className="lg:col-span-4"
           >
-            <span className="text-[10px] tracking-[0.35em] uppercase text-white/25 font-light">
+            <span className="text-[10px] tracking-[0.35em] uppercase text-white/25 font-light" aria-hidden="true">
               About
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl font-light text-white/90 leading-tight tracking-tight">
+            
+            {/* Semantic GEO Heading, visually hidden but read by AI & Screen Readers */}
+            <h2 className="sr-only">Who is Sibhi S? Computer Science Engineer & Researcher</h2>
+            
+            <div className="mt-4 text-3xl md:text-4xl font-light text-white/90 leading-tight tracking-tight" aria-hidden="true">
               Building at the
               <br />
               <span className="text-white/50">frontier.</span>
-            </h2>
+            </div>
 
             {/* Decorative element */}
             <motion.div

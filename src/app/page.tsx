@@ -13,6 +13,7 @@ const ProjectsSection = dynamic(() => import("@/components/sections/ProjectsSect
 const ExperienceSection = dynamic(() => import("@/components/sections/ExperienceSection"));
 const EducationSection = dynamic(() => import("@/components/sections/EducationSection"));
 const ResearchSection = dynamic(() => import("@/components/sections/ResearchSection"));
+const ArticlesSection = dynamic(() => import("@/components/sections/ArticlesSection"));
 const GitHubSection = dynamic(() => import("@/components/sections/GitHubSection"));
 const ResumeSection = dynamic(() => import("@/components/sections/ResumeSection"));
 const ContactSection = dynamic(() => import("@/components/sections/ContactSection"));
@@ -39,6 +40,7 @@ export default function HomePage() {
         <ExperienceSection />
         <EducationSection />
         <ResearchSection />
+        <ArticlesSection />
         <GitHubSection />
         <ResumeSection />
         <ContactSection />

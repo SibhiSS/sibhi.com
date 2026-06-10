@@ -59,6 +59,15 @@ export interface SkillCategory {
   items: string[];
 }
 
+export interface Article {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  link?: string;
+  tags: string[];
+}
+
 // ── Hero ──
 export const hero = {
   name: "Sibhi S",
@@ -302,3 +311,23 @@ export const socials = {
 
 // ── Resume ──
 export const resumeUrl = "/resume.pdf";
+
+// ── Articles / Case Studies ──
+export const articles: Article[] = [
+  {
+    id: "article-1",
+    title: "Securing 6G Networks: The Role of Quantum Key Distribution in Free-Space Optics",
+    description: "An in-depth analysis of how QKD protocols can mitigate atmospheric turbulence in next-generation wireless communications.",
+    date: "June 2026",
+    tags: ["Quantum Cryptography", "6G", "Deep Learning"],
+    link: "https://medium.com/@sibhis/securing-6g-networks" // Placeholder link
+  },
+  {
+    id: "article-2",
+    title: "Why CNNs Still Matter in the Era of Vision Transformers",
+    description: "A performance comparison of 15 different machine learning models on the Intel Image Dataset, highlighting the efficiency of custom CNN architectures for edge computing.",
+    date: "April 2026",
+    tags: ["Machine Learning", "Computer Vision", "Edge AI"],
+    link: "https://dev.to/sibhiss/why-cnns-still-matter" // Placeholder link
+  }
+];

@@ -23,12 +23,16 @@ export default function ResearchSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="mb-16 md:mb-20"
         >
-          <span className="text-[10px] tracking-[0.35em] uppercase text-white/25 font-light">
+          <span className="text-[10px] tracking-[0.35em] uppercase text-white/25 font-light" aria-hidden="true">
             Explorations
           </span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-light text-white/90 tracking-tight">
+          
+          {/* Semantic GEO Heading */}
+          <h2 className="sr-only">Machine Learning & Quantum Systems Research by Sibhi S</h2>
+          
+          <div className="mt-4 text-3xl md:text-4xl font-light text-white/90 tracking-tight" aria-hidden="true">
             Research <span className="text-white/40">& Publications</span>
-          </h2>
+          </div>
           <p className="mt-4 text-sm text-white/25 font-light max-w-xl leading-relaxed">
             Active areas of intellectual exploration and technical inquiry at the
             intersection of security, quantum systems, and intelligent
